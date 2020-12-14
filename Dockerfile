@@ -36,6 +36,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 
 # copy patches and script
 COPY patch /tmp/patch
+COPY mumps.ld.so.conf /tmp/mumps.ld.so.conf
 COPY install-mumps.bash /tmp/install-mumps.bash 
 
 # download the source code of MUMPS and compile it

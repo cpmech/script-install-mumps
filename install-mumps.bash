@@ -2,6 +2,11 @@
 
 set -e
 
+sudo () {
+  [[ $EUID = 0 ]] || set -- command sudo "$@"
+  "$@"
+}
+
 # constants
 MUMPS_VERSION="5.3.5"
 MUMPS_GZ=mumps_$MUMPS_VERSION.orig.tar.gz
