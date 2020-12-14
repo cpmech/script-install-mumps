@@ -11,18 +11,22 @@
 # Begin orderings
 LSCOTCHDIR = /usr/lib
 ISCOTCH    = -I/usr/include/scotch
-LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+#LSCOTCH   = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+LSCOTCH    = -L$(LSCOTCHDIR) -lesmumps -lscotch -lscotcherr
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
 LMETISDIR = /usr/lib 
-IMETIS    = -I/usr/include/parmetis
-LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+#IMETIS   = -I/usr/include/parmetis
+IMETIS    = -I/usr/include/metis
+#LMETIS   = -L$(LMETISDIR) -lparmetis -lmetis
+LMETIS    = -L$(LMETISDIR) -lmetis
 
 # Corresponding variables reused later
-ORDERINGSF = -Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch
+#ORDERINGSF = -Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch
+ORDERINGSF  = -Dmetis -Dpord -Dscotch
 ORDERINGSC  = $(ORDERINGSF)
 
 LORDERINGS  = $(LMETIS) $(LPORD) $(LSCOTCH)
