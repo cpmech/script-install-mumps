@@ -18,6 +18,7 @@ PDIR=$HERE/patch
 curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o /tmp/$MUMPS_GZ
 rm -rf $MUMPS_DIR
 tar xzf /tmp/$MUMPS_GZ
+rm /tmp/$MUMPS_GZ
 
 # patch and compile
 cd $MUMPS_DIR

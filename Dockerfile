@@ -20,6 +20,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   netbase \
   curl \
   git \
+  vim-tiny \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # required compilers and libraries for gosl
@@ -42,3 +43,6 @@ COPY install-mumps.bash /tmp/install-mumps.bash
 # download the source code of MUMPS and compile it
 WORKDIR /tmp
 RUN bash install-mumps.bash
+
+# clean up
+RUN rm -rf /tmp/patch && rm -rf /tmp/MUMPS_* && rm /tmp/mumps.ld.so.conf && rm /tmp/install-mumps.bash 
