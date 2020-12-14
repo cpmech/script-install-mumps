@@ -31,6 +31,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   libopenblas-dev \
   libmetis-dev \
   libscotch-dev \
+  libscalapack-mpi-dev \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # copy patches and script
