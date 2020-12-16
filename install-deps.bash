@@ -1,11 +1,14 @@
 #!/bin/bash
 
 sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
-  build-essential \
-  gcc \
+  curl \
+  g++ \
+  git \
   gfortran \
-  libopenmpi-dev \
-  libopenblas-dev \
   libmetis-dev \
+  libopenblas-dev \
+  libopenmpi-dev \
+  libscalapack-mpi-dev \
   libscotch-dev \
-  libscalapack-mpi-dev
+  make \
+  patch

@@ -1,48 +1,24 @@
 FROM ubuntu:20.04
 
-# disable tzdata questions
-ENV DEBIAN_FRONTEND=noninteractive
-
-# use bash
-SHELL ["/bin/bash", "-c"]
-
-# enable non-free
-RUN sed -i "s#deb http://deb.debian.org/debian sid main#deb http://deb.debian.org/debian sid main non-free#g" /etc/apt/sources.list
-
-# install apt-utils
-RUN apt-get update -y && \
-  apt-get install -y apt-utils 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 ) \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # essential tools
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
   ca-certificates \
-  netbase \
   curl \
+  g++ \
   git \
-  vim-tiny \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# required compilers and libraries for gosl
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
-  build-essential \
-  gcc \
   gfortran \
-  libopenmpi-dev \
-  libopenblas-dev \
   libmetis-dev \
-  libscotch-dev \
+  libopenblas-dev \
+  libopenmpi-dev \
   libscalapack-mpi-dev \
+  libscotch-dev \
+  make \
+  patch \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# copy patches and script
-COPY patch /tmp/patch
-COPY mumps.ld.so.conf /tmp/mumps.ld.so.conf
-COPY install-mumps.bash /tmp/install-mumps.bash 
-
-# download the source code of MUMPS and compile it
-WORKDIR /tmp
+# install MUMPS
+COPY . /tmp/app
+WORKDIR /tmp/app
 RUN bash install-mumps.bash
-
-# clean up
-RUN rm -rf /tmp/patch && rm -rf /tmp/MUMPS_* && rm /tmp/mumps.ld.so.conf && rm /tmp/install-mumps.bash 
