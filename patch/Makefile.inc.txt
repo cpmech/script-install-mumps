@@ -1,62 +1,50 @@
-# Begin orderings
 LSCOTCHDIR = /usr/lib
 ISCOTCH    = -I/usr/include/scotch
-#LSCOTCH   = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
-LSCOTCH    = -L$(LSCOTCHDIR) -lesmumps -lscotch -lscotcherr
+LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord
 
 LMETISDIR = /usr/lib 
-#IMETIS   = -I/usr/include/parmetis
-IMETIS    = -I/usr/include/metis
-#LMETIS   = -L$(LMETISDIR) -lparmetis -lmetis
-LMETIS    = -L$(LMETISDIR) -lmetis
+IMETIS    = -I/usr/include/parmetis
+LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
 
-# Corresponding variables reused later
-#ORDERINGSF = -Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch
-ORDERINGSF  = -Dmetis -Dpord -Dscotch
-ORDERINGSC  = $(ORDERINGSF)
+ORDERINGSF = -Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch
+ORDERINGSC = $(ORDERINGSF)
 
 LORDERINGS  = $(LMETIS) $(LPORD) $(LSCOTCH)
 IORDERINGSF = $(ISCOTCH)
 IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
-# End orderings
-################################################################################
 
-PLAT    =
-LIBEXT  = .so
-OUTC    = -o 
-OUTF    = -o 
-RM = /bin/rm -f
-CC = mpicc -O2
-FC = mpif90 -O2 -w
-FL = mpif90 -O2 -w
-AR = ar vr 
+PLAT   =
+LIBEXT = .so
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = mpicc -O2
+FC     = mpif90 -O2 -w
+FL     = mpif90 -O2 -w
+AR     = ar vr 
 RANLIB = ranlib
+
 LAPACK = -llapack
 SCALAP = -lscalapack-openmpi
 
-INCPAR = # not needed with mpif90/mpicc:  -I/usr/include/openmpi
-
-LIBPAR = $(SCALAP) $(LAPACK) # not needed with mpif90/mpicc: -lmpi_mpifh -lmpi
-
+INCPAR =
+LIBPAR = $(SCALAP) $(LAPACK)
 INCSEQ = -I$(topdir)/libseq
-LIBSEQ  = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
-LIBBLAS = -lblas
-LIBOTHERS = -lpthread
-
-#Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
-CDEFS   = -DAdd_
-
-#Begin Optimized options
-OPTF    = -O2 -fopenmp
-OPTL    = -O2 -fopenmp
-OPTC    = -O2 -fopenmp
-#End Optimized options
- 
 INCS = $(INCPAR)
 LIBS = $(LIBPAR)
+
+LIBBLAS   = -lblas
+LIBOTHERS = -lpthread
+
+CDEFS = -DAdd_
+OPTF  = -O2 -fopenmp
+OPTL  = -O2 -fopenmp
+OPTC  = -O2 -fopenmp
+
 LIBSEQNEEDED =
