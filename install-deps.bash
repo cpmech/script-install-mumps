@@ -5,9 +5,10 @@ sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
   g++ \
   git \
   gfortran \
-  libmetis-dev \
   libopenblas-dev \
   libopenmpi-dev \
+  libparmetis-dev \
+  libptscotch-dev \
   libscalapack-mpi-dev \
   libscotch-dev \
   make \
