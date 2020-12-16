@@ -1,13 +1,3 @@
-#
-#  This file is part of MUMPS 5.3.5, released
-#  on Thu Oct 22 09:29:08 UTC 2020
-#
-# These settings for a PC under Debian/linux with standard packages :
-# metis (parmetis), scotch (ptscotch), openmpi, gfortran
-
-# packages installation: 
-# apt-get install libmetis-dev libparmetis-dev libscotch-dev libptscotch-dev libatlas-base-dev openmpi-bin libopenmpi-dev liblapack-dev
-
 # Begin orderings
 LSCOTCHDIR = /usr/lib
 ISCOTCH    = -I/usr/include/scotch

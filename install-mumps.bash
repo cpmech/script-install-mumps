@@ -7,6 +7,9 @@ sudo () {
   "$@"
 }
 
+# options
+USE_INTEL=${1:-"false"}
+
 # constants
 MUMPS_VERSION="5.3.5"
 MUMPS_GZ=mumps_$MUMPS_VERSION.orig.tar.gz
@@ -24,7 +27,11 @@ rm /tmp/$MUMPS_GZ
 cd $MUMPS_DIR
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
-cp $PDIR/Makefile.inc .
+if [ "${USE_INTEL}" = "true" ]; then
+  cp $PDIR/Makefile.inc.intel.txt Makefile.inc
+else
+  cp $PDIR/Makefile.inc.txt Makefile.inc
+fi
 make d
 make z
 chmod -x lib/*
