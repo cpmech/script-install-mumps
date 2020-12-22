@@ -8,7 +8,8 @@ sudo () {
 }
 
 # options
-USE_INTEL=${1:-"false"}
+INTEL=${1:-"false"}
+SIMPLE=${2:-"false"}
 
 # constants
 MUMPS_VERSION="5.3.5"
@@ -20,6 +21,7 @@ PDIR=$HERE/patch
 # download and exctract the source code
 curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o /tmp/$MUMPS_GZ
 rm -rf $MUMPS_DIR
+cd /tmp
 tar xzf /tmp/$MUMPS_GZ
 rm /tmp/$MUMPS_GZ
 
@@ -27,11 +29,22 @@ rm /tmp/$MUMPS_GZ
 cd $MUMPS_DIR
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
-if [ "${USE_INTEL}" = "true" ]; then
-  echo ">>>>>>>>>>>>>>>>>>>>>> using Intel MKL <<<<<<<<<<<<<<<<<<<<<<<<<<<"
-  cp $PDIR/Makefile.inc.intel.txt Makefile.inc
+if [ "${INTEL}" = "true" ]; then
+  echo ">>>>>>>>>>>>>>>>>>>>>> using Intel MKL/MPI <<<<<<<<<<<<<<<<<<<<<<<<<<<"
+  if [ "${SIMPLE}" = "true" ]; then
+    echo "...................... simple ..........................."
+    cp $PDIR/Makefile.inc.intel.simple.txt Makefile.inc
+  else
+    cp $PDIR/Makefile.inc.intel.txt Makefile.inc
+  fi
 else
-  cp $PDIR/Makefile.inc.txt Makefile.inc
+  echo ">>>>>>>>>>>>>>>>>>>>>> using GCC + Open{Blas,MPI} <<<<<<<<<<<<<<<<<<<<<<<<<<<"
+  if [ "${SIMPLE}" = "true" ]; then
+    echo "...................... simple ..........................."
+    cp $PDIR/Makefile.inc.simple.txt Makefile.inc
+  else
+    cp $PDIR/Makefile.inc.txt Makefile.inc
+  fi
 fi
 make d
 make z

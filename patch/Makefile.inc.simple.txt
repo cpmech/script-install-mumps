@@ -1,0 +1,48 @@
+LSCOTCHDIR = 
+ISCOTCH    = 
+LSCOTCH    = 
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord
+
+LMETISDIR = 
+IMETIS    = 
+LMETIS    = 
+
+ORDERINGSF = -Dpord
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD)
+IORDERINGSF = 
+IORDERINGSC = $(IPORD)
+
+PLAT   =
+LIBEXT = .so
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = mpicc -O2
+FC     = mpif90 -O2 -w
+FL     = mpif90 -O2 -w
+AR     = ar vr 
+RANLIB = ranlib
+
+MKLROOT   = 
+LIBBLAS   = -lblas
+LAPACK    = -llapack
+SCALAP    = -lscalapack-openmpi
+LIBOTHERS = -lpthread
+
+INCPAR =
+LIBPAR = $(SCALAP) $(LAPACK)
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+
+INCS = $(INCPAR)
+LIBS = $(LIBPAR)
+
+CDEFS = -DAdd_
+OPTF  = -O2 -fopenmp
+OPTL  = -O2 -fopenmp
+OPTC  = -O2 -fopenmp
