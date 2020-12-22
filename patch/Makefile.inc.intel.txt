@@ -46,4 +46,3 @@ CDEFS = -DAdd_
 OPTF  = -O2 -nofor_main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
 OPTL  = -O2 -nofor_main -qopenmp
 OPTC  = -O2 -qopenmp
-
