@@ -28,6 +28,7 @@ cd $MUMPS_DIR
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
 if [ "${USE_INTEL}" = "true" ]; then
+  echo ">>>>>>>>>>>>>>>>>>>>>> using Intel MKL <<<<<<<<<<<<<<<<<<<<<<<<<<<"
   cp $PDIR/Makefile.inc.intel.txt Makefile.inc
 else
   cp $PDIR/Makefile.inc.txt Makefile.inc
