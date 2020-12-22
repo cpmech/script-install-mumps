@@ -22,9 +22,9 @@ LIBEXT = .so
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
-CC     = mpicc -O2
-FC     = mpif90 -O2 -w
-FL     = mpif90 -O2 -w
+CC     = mpicc
+FC     = mpif90
+FL     = mpif90
 AR     = ar vr 
 RANLIB = ranlib
 

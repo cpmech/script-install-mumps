@@ -22,9 +22,9 @@ LIBEXT = .so
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
-CC     = mpiicc -O2
-FC     = mpiifort -O2 -w
-FL     = mpiifort -O2 -w
+CC     = mpiicc
+FC     = mpiifort
+FL     = mpiifort
 AR     = ar vr 
 RANLIB = ranlib
 
@@ -43,6 +43,6 @@ INCS = $(INCPAR)
 LIBS = $(LIBPAR)
 
 CDEFS = -DAdd_
-OPTF  = -O2 -nofor_main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
-OPTL  = -O2 -nofor_main -qopenmp
+OPTF  = -O2 -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
+OPTL  = -O2 -nofor-main -qopenmp
 OPTC  = -O2 -qopenmp
