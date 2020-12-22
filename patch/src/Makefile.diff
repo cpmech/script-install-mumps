@@ -1,5 +1,5 @@
---- Makefile.orig	2020-12-03 22:06:41.284556732 +1000
-+++ Makefile	2020-12-03 22:05:06.334252138 +1000
+--- Makefile.orig	2020-12-22 11:37:45.318864615 +1000
++++ Makefile	2020-12-22 11:39:26.149366802 +1000
 @@ -188,13 +188,11 @@
          $(ARITH)tools.o\
          $(ARITH)type3_root.o
@@ -19,7 +19,7 @@
  
  # Dependencies between modules:
  # i) arithmetic-dependent modules:
-@@ -405,9 +403,9 @@
+@@ -405,13 +403,13 @@
  
  .SUFFIXES: .c .F .o
  .F.o:
@@ -31,3 +31,8 @@
  
  $(ARITH)mumps_c.o:	mumps_c.c
  	$(CC) $(OPTC) -I../include $(INCS) $(CDEFS) -DMUMPS_ARITH=MUMPS_ARITH_$(ARITH) \
+-	      $(IORDERINGSC) $(ORDERINGSC) -c mumps_c.c $(OUTC)$@
++	      $(IORDERINGSC) $(ORDERINGSC) -fPIC -c mumps_c.c $(OUTC)$@
+ 
+ clean:
+ 	$(RM) *.o *.mod $(incdir)/mumps_int_def.h
