@@ -1,10 +1,25 @@
+PLAT   = _intel
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = mpiicc
+FC     = mpiifort
+FL     = mpiifort
+AR     = ar vr 
+RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3 -Dintel_ -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
+OPTL  = -O3 -nofor-main -qopenmp
+OPTC  = -O3 -qopenmp
+
 LSCOTCHDIR = 
 ISCOTCH    = 
 LSCOTCH    = 
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
-LPORD    = -L$(LPORDDIR) -lpord
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
 
 LMETISDIR = 
 IMETIS    = 
@@ -16,17 +31,6 @@ ORDERINGSC = $(ORDERINGSF)
 LORDERINGS  = $(LPORD)
 IORDERINGSF = 
 IORDERINGSC = $(IPORD)
-
-PLAT   =
-LIBEXT = .so
-OUTC   = -o 
-OUTF   = -o 
-RM     = /bin/rm -f
-CC     = mpiicc
-FC     = mpiifort
-FL     = mpiifort
-AR     = ar vr 
-RANLIB = ranlib
 
 MKLROOT   = /opt/intel/oneapi/mkl/latest/lib/intel64
 LIBBLAS   = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
@@ -41,8 +45,3 @@ LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
 INCS = $(INCPAR)
 LIBS = $(LIBPAR)
-
-CDEFS = -DAdd_
-OPTF  = -O2 -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
-OPTL  = -O2 -nofor-main -qopenmp
-OPTC  = -O2 -qopenmp
