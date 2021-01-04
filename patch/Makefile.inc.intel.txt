@@ -17,8 +17,7 @@ LORDERINGS  = $(LMETIS) $(LPORD) $(LSCOTCH)
 IORDERINGSF = $(ISCOTCH)
 IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
 
-PLAT   =
-LIBEXT = .so
+PLAT   = _intel
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f

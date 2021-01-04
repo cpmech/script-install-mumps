@@ -9,9 +9,9 @@ AR     = ar vr
 RANLIB = ranlib
 
 CDEFS = -DAdd_
-OPTF  = -O3 -Dintel_ -DBLR_MT -fopenmp
-OPTL  = -O3 -fopenmp
-OPTC  = -O3 -fopenmp
+OPTF  = -O3 -Dintel_
+OPTL  = -O3
+OPTC  = -O3
 
 LSCOTCHDIR = 
 ISCOTCH    = 
