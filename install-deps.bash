@@ -10,6 +10,5 @@ sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
   libparmetis-dev \
   libptscotch-dev \
   libscalapack-mpi-dev \
-  libscotch-dev \
   make \
   patch
