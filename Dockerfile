@@ -18,7 +18,6 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   libparmetis-dev \
   libptscotch-dev \
   libscalapack-mpi-dev \
-  libscotch-dev \
   make \
   patch \
   && apt-get clean && rm -rf /var/lib/apt/lists/*

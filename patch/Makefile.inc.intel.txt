@@ -1,22 +1,3 @@
-LSCOTCHDIR = /usr/lib
-ISCOTCH    = -I/usr/include/scotch
-LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
-
-LPORDDIR = $(topdir)/PORD/lib/
-IPORD    = -I$(topdir)/PORD/include/
-LPORD    = -L$(LPORDDIR) -lpord
-
-LMETISDIR = /usr/lib 
-IMETIS    = -I/usr/include/parmetis
-LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
-
-ORDERINGSF = -Dmetis -Dpord -Dparmetis -Dscotch -Dptscotch
-ORDERINGSC = $(ORDERINGSF)
-
-LORDERINGS  = $(LMETIS) $(LPORD) $(LSCOTCH)
-IORDERINGSF = $(ISCOTCH)
-IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
-
 PLAT   = _intel
 OUTC   = -o 
 OUTF   = -o 
@@ -26,6 +7,30 @@ FC     = mpiifort
 FL     = mpiifort
 AR     = ar vr 
 RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3 -nofor-main -DGEMMT_AVAILABLE
+OPTL  = -O3 -nofor-main
+OPTC  = -O3
+
+LSCOTCHDIR = /usr/lib
+ISCOTCH    = -I/usr/include/scotch
+LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/parmetis
+LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+
+ORDERINGSF = -Dpord -Dmetis -Dparmetis -Dscotch -Dptscotch
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
+IORDERINGSF = $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
 
 MKLROOT   = /opt/intel/oneapi/mkl/latest/lib/intel64
 LIBBLAS   = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
@@ -40,8 +45,3 @@ LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
 
 INCS = $(INCPAR)
 LIBS = $(LIBPAR)
-
-CDEFS = -DAdd_
-OPTF  = -O2 -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
-OPTL  = -O2 -nofor-main -qopenmp
-OPTC  = -O2 -qopenmp

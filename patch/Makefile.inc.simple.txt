@@ -9,7 +9,7 @@ AR     = ar vr
 RANLIB = ranlib
 
 CDEFS = -DAdd_
-OPTF  = -O3 -Dintel_
+OPTF  = -O3
 OPTL  = -O3
 OPTC  = -O3
 
