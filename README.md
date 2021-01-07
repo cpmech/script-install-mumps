@@ -27,7 +27,7 @@ Or use with [Visual Code Remote Development](https://code.visualstudio.com/docs/
 
 The installation in Ubuntu/Linux is quite simple too. First, install OpenBLAS and ordering packages and then run the script as follows.
 
-Install dependencies:
+### Install dependencies:
 
 ```bash
 sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
@@ -44,7 +44,9 @@ sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
   patch
 ```
 
-Compile and install MUMPS on Ubuntu:
+### Compile and install MUMPS on Ubuntu:
+
+Execute the following command:
 
 ```bash
 bash install-mumps.bash
@@ -54,4 +56,23 @@ To use the Intel compilers (and MKL), execute the following command:
 
 ```bash
 bash install-mumps true
+```
+
+### Remove include and library files on Ubuntu:
+
+Execute the following command:
+
+```bash
+./uninstall-mumps-be-careful.bash
+```
+
+Output:
+
+```
+Are you sure [y/n]? y
+sudo rm -rf /usr/local/include/mumps
+sudo rm -rf /usr/local/lib/mumps
+sudo rm -f /etc/ld.so.conf.d/mumps.conf
+sudo ldconfig
+DONE
 ```
