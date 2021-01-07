@@ -30,7 +30,8 @@ The installation in Ubuntu/Linux is quite simple too. First, install OpenBLAS an
 ### Install dependencies:
 
 ```bash
-sudo apt-get update -y && sudo apt-get install -y --no-install-recommends \
+sudo apt-get update -y \
+&& sudo apt-get install -y --no-install-recommends \
   curl \
   g++ \
   git \
