@@ -26,6 +26,9 @@ Open your project folder (e.g. this repo folder) in Visual Studio Code and click
 
 If you want to debug using VS Code, copy the `.vscode` directory to your project and modify as appropriate.
 
+
+![](vscode-open-in-container.gif)
+
 ![](Script_Install_MUMPS_1.gif)
 
 ## Ubuntu/Linux 20.10
