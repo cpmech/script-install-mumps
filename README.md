@@ -64,13 +64,13 @@ bash install-mumps.bash
 To use the Intel compilers (and MKL), execute the following command:
 
 ```bash
-bash install-mumps true
+bash install-mumps.bash true
 ```
 
 By default, this script will compile MUMPS with METIS and SCOTCH. To compile a _simple_ version without those libraries, run:
 
 ```bash
-bash install-mumps false true
+bash install-mumps.bash false true
 ```
 
 ### Remove include and library files on Ubuntu:
