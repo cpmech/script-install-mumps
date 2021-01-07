@@ -11,6 +11,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   ca-certificates \
   curl \
   g++ \
+  gdb \
   git \
   gfortran \
   libopenblas-dev \

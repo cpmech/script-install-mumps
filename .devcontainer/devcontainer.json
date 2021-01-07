@@ -12,5 +12,8 @@
   "forwardPorts": [
     9000
   ],
-  "remoteUser": "vscode"
+  "remoteUser": "vscode",
+  "extensions": [
+    "ms-vscode.cpptools"
+  ]
 }
