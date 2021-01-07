@@ -5,7 +5,7 @@ set -e
 # arguments
 INTEL=${1:-"false"}
 SIMPLE=${2:-"false"}
-ZNUMBERS=${3:-"false"}
+ZNUMBERS=${3:-"true"}
 
 # options
 MUMPS_VERSION="5.3.5"
