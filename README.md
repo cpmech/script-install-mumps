@@ -24,9 +24,9 @@ Or use with [Visual Code Remote Development](https://code.visualstudio.com/docs/
 
 Open your project folder (e.g. this repo folder) in Visual Studio Code and click the green button at the window's left-bottom corner. Then choose _Reopen in Container_.
 
-If you want to debug using VS Code, copy the `.vscode` directory to your project and modify as appropriate.
-
 ![](vscode-open-in-container.gif)
+
+If you want to debug using  VS Code, copy the `.vscode` directory to your project and modify as appropriate. See the example below of how convenient it is to use VS Code for debugging the code.
 
 ![](Script_Install_MUMPS_1.gif)
 
