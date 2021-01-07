@@ -31,22 +31,12 @@ int main(int argc, char **argv)
 
     /* When compiling with -DINTSIZE64, MUMPS_INT is 64-bit but MPI
        ilp64 versions may still require standard int for C interface. */
-    /* MUMPS_INT myid, ierr; */
-    int myid, ierr;
+    /* MUMPS_INT myid; */
+    int myid;
 
     int error = 0;
-    ierr = MPI_Init(&argc, &argv);
-    if (ierr != 0)
-    {
-        printf("MPI_Init failed\n");
-        return 1;
-    }
-    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &myid);
-    if (ierr != 0)
-    {
-        printf("MPI_Comm_rank failed\n");
-        return 1;
-    }
+    MPI_Init(&argc, &argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myid);
     /* Define A and rhs */
     rhs[0] = 1.0;
     rhs[1] = 4.0;
@@ -100,6 +90,6 @@ int main(int argc, char **argv)
             printf("An error has occured, please check error code returned by MUMPS.\n");
         }
     }
-    ierr = MPI_Finalize();
-    return ierr;
+    MPI_Finalize();
+    return 0;
 }
