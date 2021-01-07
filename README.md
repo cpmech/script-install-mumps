@@ -41,6 +41,7 @@ sudo apt-get update -y \
 && sudo apt-get install -y --no-install-recommends \
   curl \
   g++ \
+  gdb \
   git \
   gfortran \
   libopenblas-dev \
