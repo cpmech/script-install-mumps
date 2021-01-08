@@ -91,3 +91,44 @@ sudo rm -f /etc/ld.so.conf.d/mumps.conf
 sudo ldconfig
 DONE
 ```
+
+## Installing Intel Tools
+
+Reference: https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html
+
+Add intel list to APT:
+
+```bash
+cd /tmp
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+```
+
+Install the compilers, MKL and MPI
+
+```bash
+sudo apt-get update -y \
+&& sudo apt-get install -y --no-install-recommends \
+  intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
+  intel-oneapi-compiler-fortran \
+  intel-oneapi-mkl \
+  intel-oneapi-mpi-devel
+```
+
+As an alternative, `sudo apt-get install intel-hpckit` brings "everything".
+
+You may then run `source /opt/intel/oneapi/setvars.sh` to prepare the environment or, better, run with a configuration and only the tools we need. First, create the `config.txt` file:
+
+```
+default=exclude
+compiler=latest
+mkl=latest
+mpi=latest
+```
+
+Then, run:
+
+```
+source /opt/intel/oneapi/setvars.sh --config="config.txt"
+```
