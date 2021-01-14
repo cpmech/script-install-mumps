@@ -64,13 +64,19 @@ bash install-mumps.bash
 To use the Intel compilers (and MKL), execute the following command:
 
 ```bash
-bash install-mumps.bash true
+bash install-mumps.bash ON
+```
+
+To enable OpenMPI, with Intel or not, set the second argument to ON:
+
+```bash
+bash install-mumps.bash {ON,OFF} ON
 ```
 
 By default, this script will compile MUMPS with METIS and SCOTCH. To compile a _simple_ version without those libraries, run:
 
 ```bash
-bash install-mumps.bash false true
+bash install-mumps.bash {ON,OFF} {ON,OFF} ON
 ```
 
 ### Remove include and library files on Ubuntu:
@@ -112,7 +118,7 @@ sudo apt-get update -y \
 && sudo apt-get install -y --no-install-recommends \
   intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
   intel-oneapi-compiler-fortran \
-  intel-oneapi-mkl \
+  intel-oneapi-mkl-devel \
   intel-oneapi-mpi-devel
 ```
 

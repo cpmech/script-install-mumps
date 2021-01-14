@@ -1,0 +1,47 @@
+PLAT   =
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = mpicc
+FC     = mpif90
+FL     = mpif90
+AR     = ar vr 
+RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3 -DBLR_MT -fopenmp
+OPTL  = -O3 -fopenmp
+OPTC  = -O3 -fopenmp
+
+LSCOTCHDIR = /usr/lib
+ISCOTCH    = -I/usr/include/scotch
+LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/parmetis
+LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+
+ORDERINGSF = -Dpord -Dmetis -Dparmetis -Dscotch -Dptscotch
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
+IORDERINGSF = $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
+
+MKLROOT   = 
+LIBBLAS   = -lblas
+LAPACK    = -llapack
+SCALAP    = -lscalapack-openmpi
+LIBOTHERS = -lpthread
+
+INCPAR =
+LIBPAR = $(SCALAP) $(LAPACK)
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+
+INCS = $(INCPAR)
+LIBS = $(LIBPAR)

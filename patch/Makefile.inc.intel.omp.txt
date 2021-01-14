@@ -1,0 +1,47 @@
+PLAT   = _intel
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = mpiicc
+FC     = mpiifort
+FL     = mpiifort
+AR     = ar vr 
+RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3 -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
+OPTL  = -O3 -nofor-main -qopenmp
+OPTC  = -O3 -qopenmp
+
+LSCOTCHDIR = /usr/lib
+ISCOTCH    = -I/usr/include/scotch
+LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/parmetis
+LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+
+ORDERINGSF = -Dpord -Dmetis -Dparmetis -Dscotch -Dptscotch
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
+IORDERINGSF = $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
+
+MKLROOT   = /opt/intel/oneapi/mkl/latest/lib/intel64
+LIBBLAS   = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
+LAPACK    = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core
+SCALAP    = -L$(MKLROOT) -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64
+LIBOTHERS = -lpthread
+
+INCPAR =
+LIBPAR = $(SCALAP) $(LAPACK)
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+
+INCS = $(INCPAR)
+LIBS = $(LIBPAR)

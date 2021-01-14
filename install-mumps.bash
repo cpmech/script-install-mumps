@@ -3,9 +3,10 @@
 set -e
 
 # arguments
-INTEL=${1:-"false"}
-SIMPLE=${2:-"false"}
-ZNUMBERS=${3:-"true"}
+INTEL=${1:-"OFF"}
+OMP=${2:-"OFF"}
+SIMPLE=${3:-"OFF"}
+ZNUMBERS=${4:-"ON"}
 
 # options
 MUMPS_VERSION="5.3.5"
@@ -23,37 +24,32 @@ rm -rf /tmp/$MUMPS_DIR
 cd /tmp
 tar xzf /tmp/$MUMPS_GZ
 
+# select suffix
+SELECTION=""
+if [ "${INTEL}" = "ON" ]; then
+    SELECTION="${SELECTION}.intel"
+fi
+if [ "${OMP}" = "ON" ]; then
+    SELECTION="${SELECTION}.omp"
+    SIMPLE="false"
+fi
+if [ "${SIMPLE}" = "ON" ]; then
+    SELECTION="${SELECTION}.simple"
+fi
+
 # patch Makefiles
 cd $MUMPS_DIR
 patch -u libseq/Makefile $PDIR/libseq/Makefile.diff
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
 patch -u Makefile $PDIR/Makefile.diff
-
-# select Makefile.inc
-if [ "${INTEL}" = "true" ]; then
-    echo ">>>>>>>>>>>>>>>>>>>>>> using Intel MKL/MPI <<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    if [ "${SIMPLE}" = "true" ]; then
-        echo "...................... simple ..........................."
-        cp $PDIR/Makefile.inc.intel.simple.txt Makefile.inc
-    else
-        cp $PDIR/Makefile.inc.intel.txt Makefile.inc
-    fi
-else
-    echo ">>>>>>>>>>>>>>>>>>>>>> using GCC + Open{Blas,MPI} <<<<<<<<<<<<<<<<<<<<<<<<<<<"
-    if [ "${SIMPLE}" = "true" ]; then
-        echo "...................... simple ..........................."
-        cp $PDIR/Makefile.inc.simple.txt Makefile.inc
-    else
-        cp $PDIR/Makefile.inc.txt Makefile.inc
-    fi
-fi
+cp $PDIR/Makefile.inc$SELECTION.txt Makefile.inc
 
 # compile double
 make d
 
 # compile complex
-if [ "${ZNUMBERS}" = "true" ]; then
+if [ "${ZNUMBERS}" = "ON" ]; then
     make z
 fi
 
@@ -71,7 +67,7 @@ sudo mkdir -p $LIBDIR/
 sudo cp -av include/*.h $INCDIR/
 sudo cp -av lib/libpord*.* $LIBDIR/
 sudo cp -av lib/libdmumps*.* $LIBDIR/
-if [ "${ZNUMBERS}" = "true" ]; then
+if [ "${ZNUMBERS}" = "ON" ]; then
   sudo cp -av lib/libzmumps*.* $LIBDIR/
 fi
 sudo cp -av lib/libmumps_common*.* $LIBDIR/
