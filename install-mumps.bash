@@ -3,10 +3,11 @@
 set -e
 
 # arguments
-INTEL=${1:-"OFF"}
+SEQ=${1:-"ON"}
 OMP=${2:-"OFF"}
-SIMPLE=${3:-"OFF"}
-ZNUMBERS=${4:-"ON"}
+INTEL=${3:-"OFF"}
+SIMPLE=${4:-"OFF"}
+ZNUMBERS=${5:-"ON"}
 
 # options
 MUMPS_VERSION="5.3.5"
@@ -24,14 +25,17 @@ rm -rf /tmp/$MUMPS_DIR
 cd /tmp
 tar xzf /tmp/$MUMPS_GZ
 
-# select suffix
+# selection
 SELECTION=""
-if [ "${INTEL}" = "ON" ]; then
-    SELECTION="${SELECTION}.intel"
+if [ "${SEQ}" = "ON" ]; then
+    SELECTION="${SELECTION}.seq"
 fi
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"
     SIMPLE="false"
+fi
+if [ "${INTEL}" = "ON" ]; then
+    SELECTION="${SELECTION}.intel"
 fi
 if [ "${SIMPLE}" = "ON" ]; then
     SELECTION="${SELECTION}.simple"

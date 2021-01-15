@@ -1,0 +1,49 @@
+PLAT   =
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = gcc
+FC     = gfortran
+FL     = gfortran
+AR     = ar vr 
+RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3
+OPTL  = -O3
+OPTC  = -O3
+
+LSCOTCHDIR =
+ISCOTCH    =
+LSCOTCH    =
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/metis
+LMETIS    = -L$(LMETISDIR) -lmetis
+
+ORDERINGSF = -Dpord -Dmetis
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
+IORDERINGSF = $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
+
+MKLROOT   = 
+LIBBLAS   = -lblas
+LAPACK    = -llapack
+SCALAP    =
+LIBOTHERS = -lpthread
+
+INCPAR =
+LIBPAR = $(SCALAP) $(LAPACK)
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+
+INCS = $(INCPAR)
+LIBS = $(LIBPAR)
+
+LIBSEQNEEDED = libseqneeded

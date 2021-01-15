@@ -36,6 +36,24 @@ The installation in Ubuntu/Linux is quite simple too. First, install OpenBLAS an
 
 ### Install dependencies:
 
+#### Without MPI (seq)
+
+```bash
+sudo apt-get update -y \
+&& sudo apt-get install -y --no-install-recommends \
+  curl \
+  g++ \
+  gdb \
+  git \
+  gfortran \
+  libopenblas-dev \
+  libmetis-dev \
+  make \
+  patch
+```
+
+#### With MPI
+
 ```bash
 sudo apt-get update -y \
 && sudo apt-get install -y --no-install-recommends \
