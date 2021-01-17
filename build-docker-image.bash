@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INTEL=${1:-"ON"}
+INTEL=${1:-"OFF"}
 
 if [ "${INTEL}" = "ON" ]; then
     docker build --no-cache -t mumps:intel . -f Dockerfile-intel
