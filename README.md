@@ -26,7 +26,7 @@ Open your project folder (e.g. this repo folder) in Visual Studio Code and click
 
 ![](vscode-open-in-container.gif)
 
-If you want to debug using  VS Code, copy the `.vscode` directory to your project and modify as appropriate. See the example below of how convenient it is to use VS Code for debugging the code.
+If you want to debug using VS Code, copy the `.vscode` directory to your project and modify as appropriate. See the example below of how convenient it is to use VS Code for debugging the code.
 
 ![](Script_Install_MUMPS_1.gif)
 
@@ -36,40 +36,7 @@ The installation in Ubuntu/Linux is quite simple too. First, install OpenBLAS an
 
 ### Install dependencies:
 
-#### Without MPI (seq)
-
-```bash
-sudo apt-get update -y \
-&& sudo apt-get install -y --no-install-recommends \
-  curl \
-  g++ \
-  gdb \
-  git \
-  gfortran \
-  libopenblas-dev \
-  libmetis-dev \
-  make \
-  patch
-```
-
-#### With MPI
-
-```bash
-sudo apt-get update -y \
-&& sudo apt-get install -y --no-install-recommends \
-  curl \
-  g++ \
-  gdb \
-  git \
-  gfortran \
-  libopenblas-dev \
-  libopenmpi-dev \
-  libparmetis-dev \
-  libptscotch-dev \
-  libscalapack-mpi-dev \
-  make \
-  patch
-```
+see file install-deps.bash
 
 ### Compile and install MUMPS on Ubuntu:
 

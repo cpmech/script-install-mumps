@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-c"]
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
   ca-certificates \
+  cmake \
   curl \
   g++ \
   gdb \
