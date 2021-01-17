@@ -4,7 +4,7 @@ The script `install-mumps.bash` builds both static and **dynamic** libraries for
 
 The script downloads MUMPS' source code from the Debian repository, compiles the code and installs the headers to `/usr/local/include/mumps` and the libraries (static and **dynamic**) to `/usr/local/lib/mumps`. The intel libraries have the suffix `_intel`.
 
-This project also offers a script to download and compile {Par}METIS.
+This project also offers a script to download and compile {Par}METIS. The include files will go to `/usr/local/include/metis` and the library files will go to `/usr/local/lib/metis`.
 
 You may build a Docker image or run the script directly in an Ubuntu/Linux system. The docker image is quite convenient for use with Visual Code remote development tools.
 
