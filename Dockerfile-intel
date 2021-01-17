@@ -15,6 +15,7 @@ RUN curl -L https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PROD
 # deps
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
   cmake \
+  g++ \
   gdb \
   git \
   intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
@@ -30,6 +31,7 @@ COPY . /tmp/app
 WORKDIR /tmp/app
 
 # install MUMPS
+RUN source /opt/intel/oneapi/setvars.sh
 RUN bash all.bash ON
 
 # configure image for remote development

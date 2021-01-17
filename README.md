@@ -4,6 +4,8 @@ The script `install-mumps.bash` builds both static and **dynamic** libraries for
 
 The script downloads MUMPS' source code from the Debian repository, compiles the code and installs the headers to `/usr/local/include/mumps` and the libraries (static and **dynamic**) to `/usr/local/lib/mumps`. The intel libraries have the suffix `_intel`.
 
+This project also offers a script to download and compile {Par}METIS.
+
 You may build a Docker image or run the script directly in an Ubuntu/Linux system. The docker image is quite convenient for use with Visual Code remote development tools.
 
 ## Docker Image
@@ -11,18 +13,22 @@ You may build a Docker image or run the script directly in an Ubuntu/Linux syste
 We can build the Docker image by running:
 
 ```bash
-bash build-docker-image.bash
+bash build-docker-image.bash {ON,[OFF]}
 ```
+
+where the {ON,OFF} option tells the script to use the Intel tools or not. The default is OFF (gcc+OpenBlas+OpenMPI).
 
 Open the terminal in a temporary Docker container:
 
 ```bash
 docker run --rm -it mumps /bin/bash
+# or
+docker run --rm -it mumps:intel /bin/bash
 ```
 
-Or use with [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). To do so, create a directory and copy the `.devcontainer` directory into it.
+Alternatively, see [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). First, create a directory and copy the `.devcontainer` directory into it.
 
-Open your project folder (e.g. this repo folder) in Visual Studio Code and click the green button at the window's left-bottom corner. Then choose _Reopen in Container_.
+Then, open your project folder (e.g. this repo folder) in Visual Studio Code and click the green button at the window's left-bottom corner. Choose _Reopen in Container_.
 
 ![](vscode-open-in-container.gif)
 
@@ -32,94 +38,22 @@ If you want to debug using VS Code, copy the `.vscode` directory to your project
 
 ## Ubuntu/Linux 20.10
 
-The installation in Ubuntu/Linux is quite simple too. First, install OpenBLAS and ordering packages and then run the script as follows.
+### Install dependencies
 
-### Install dependencies:
+See file [install-deps.bash](https://github.com/cpmech/script-install-mumps/blob/main/install-deps.bash)
 
-see file install-deps.bash
+### Compile and install MUMPS on Ubuntu
 
-### Compile and install MUMPS on Ubuntu:
+Use the following scripts:
 
-Execute the following command:
+1. `install-metis.bash {ON,OFF}` to install {Par}METIS, with Intel or not
+2. `install-mumps.bash {ON,OFF}` to install MUMPS, with Intel or not
 
-```bash
-bash install-mumps.bash
-```
-
-To use the Intel compilers (and MKL), execute the following command:
-
-```bash
-bash install-mumps.bash ON
-```
-
-To enable OpenMPI, with Intel or not, set the second argument to ON:
-
-```bash
-bash install-mumps.bash {ON,OFF} ON
-```
-
-By default, this script will compile MUMPS with METIS and SCOTCH. To compile a _simple_ version without those libraries, run:
-
-```bash
-bash install-mumps.bash {ON,OFF} {ON,OFF} ON
-```
+or use: `all.bash {ON,OFF}` to install {Par}METIS and MUMPS, with Intel or not.
 
 ### Remove include and library files on Ubuntu:
 
-Execute the following command:
+Use the following scripts:
 
-```bash
-./uninstall-mumps-be-careful.bash
-```
-
-Output:
-
-```
-Are you sure [y/n]? y
-sudo rm -rf /usr/local/include/mumps
-sudo rm -rf /usr/local/lib/mumps
-sudo rm -f /etc/ld.so.conf.d/mumps.conf
-sudo ldconfig
-DONE
-```
-
-## Installing Intel Tools
-
-Reference: https://software.intel.com/content/www/us/en/develop/articles/installing-intel-oneapi-toolkits-via-apt.html
-
-Add intel list to APT:
-
-```bash
-cd /tmp
-wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
-echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-```
-
-Install the compilers, MKL and MPI
-
-```bash
-sudo apt-get update -y \
-&& sudo apt-get install -y --no-install-recommends \
-  intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
-  intel-oneapi-compiler-fortran \
-  intel-oneapi-mkl-devel \
-  intel-oneapi-mpi-devel
-```
-
-As an alternative, `sudo apt-get install intel-hpckit` brings "everything".
-
-You may then run `source /opt/intel/oneapi/setvars.sh` to prepare the environment or, better, run with a configuration and only the tools we need. First, create the `config.txt` file:
-
-```
-default=exclude
-compiler=latest
-mkl=latest
-mpi=latest
-```
-
-Then, run:
-
-```
-source /opt/intel/oneapi/setvars.sh --config="config.txt"
-```
+1. `uninstall-metis.bash`
+1. `uninstall-mumps.bash`
