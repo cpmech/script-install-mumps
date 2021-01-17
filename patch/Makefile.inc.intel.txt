@@ -13,19 +13,19 @@ OPTF  = -O3 -nofor-main -DGEMMT_AVAILABLE
 OPTL  = -O3 -nofor-main
 OPTC  = -O3
 
-LSCOTCHDIR = /usr/lib
-ISCOTCH    = -I/usr/include/scotch
-LSCOTCH    = -L$(LSCOTCHDIR) -lptesmumps -lptscotch -lptscotcherr
+LSCOTCHDIR =
+ISCOTCH    =
+LSCOTCH    =
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
 LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
 
-LMETISDIR = /usr/lib 
-IMETIS    = -I/usr/include/parmetis
-LMETIS    = -L$(LMETISDIR) -lparmetis -lmetis
+LMETISDIR = /usr/local/lib/metis
+IMETIS    = -I/usr/local/include/metis
+LMETIS    = -L$(LMETISDIR) -lparmetis$(PLAT) -lmetis$(PLAT)
 
-ORDERINGSF = -Dpord -Dmetis -Dparmetis -Dscotch -Dptscotch
+ORDERINGSF = -Dpord -Dmetis -Dparmetis
 ORDERINGSC = $(ORDERINGSF)
 
 LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)

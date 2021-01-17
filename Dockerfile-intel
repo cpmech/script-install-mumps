@@ -1,0 +1,35 @@
+FROM ubuntu:20.04
+
+# essential tools
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash", "-c"]
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+  ca-certificates \
+  curl \
+  gnupg
+
+# add intel list to APT
+RUN curl -L https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | apt-key add - \
+  && echo "deb https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list
+
+# deps
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+  gdb \
+  git \
+  intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
+  intel-oneapi-compiler-fortran \
+  intel-oneapi-mkl-devel \
+  intel-oneapi-mpi-devel\
+  make \
+  patch \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# copy files
+COPY . /tmp/app
+WORKDIR /tmp/app
+
+# install MUMPS
+RUN bash all.bash ON
+
+# configure image for remote development
+RUN bash common-debian.sh

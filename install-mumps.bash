@@ -2,47 +2,59 @@
 
 set -e
 
+# fake sudo function to be used by docker build
+sudo () {
+  [[ $EUID = 0 ]] || set -- command sudo "$@"
+  "$@"
+}
+
 # arguments
-SEQ=${1:-"ON"}
-OMP=${2:-"OFF"}
-INTEL=${3:-"OFF"}
+INTEL=${1:-"OFF"}
+OMP=${3:-"OFF"}
+SEQ=${2:-"OFF"}
 SIMPLE=${4:-"OFF"}
-ZNUMBERS=${5:-"ON"}
+ZNUMBERS=${5:-"OFF"}
 
 # options
-MUMPS_VERSION="5.3.5"
-PREFIX=/usr/local
-
-# constants
-MUMPS_GZ=mumps_$MUMPS_VERSION.orig.tar.gz
-MUMPS_DIR=MUMPS_$MUMPS_VERSION
-HERE=`pwd`
-PDIR=$HERE/patch
-
-# download and extract the source code into /tmp dir
-curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o /tmp/$MUMPS_GZ
-rm -rf /tmp/$MUMPS_DIR
-cd /tmp
-tar xzf /tmp/$MUMPS_GZ
+VERSION="5.3.5"
+PREFIX="/usr/local"
+INCDIR=$PREFIX/include/mumps
+LIBDIR=$PREFIX/lib/mumps
+PDIR=`pwd`/patch
 
 # selection
 SELECTION=""
-if [ "${SEQ}" = "ON" ]; then
-    SELECTION="${SELECTION}.seq"
+if [ "${INTEL}" = "ON" ]; then
+    SELECTION="${SELECTION}.intel"
 fi
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"
     SIMPLE="false"
 fi
-if [ "${INTEL}" = "ON" ]; then
-    SELECTION="${SELECTION}.intel"
+if [ "${SEQ}" = "ON" ]; then
+    SELECTION="${SELECTION}.seq"
 fi
 if [ "${SIMPLE}" = "ON" ]; then
     SELECTION="${SELECTION}.simple"
 fi
 
-# patch Makefiles
+# download and extract the source code into /tmp dir
+MUMPS_GZ=mumps_$VERSION.orig.tar.gz
+MUMPS_DIR=MUMPS_$VERSION
+cd /tmp
+if [ -d "$MUMPS_DIR" ]; then
+    echo "... removing previous $MUMPS_DIR directory"
+    rm -rf $MUMPS_DIR
+fi
+if [ -f "$MUMPS_GZ" ]; then
+    echo "... using existing $MUMPS_GZ file"
+else
+    curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o $MUMPS_GZ
+fi
+tar xzf $MUMPS_GZ
 cd $MUMPS_DIR
+
+# patch Makefiles
 patch -u libseq/Makefile $PDIR/libseq/Makefile.diff
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
@@ -57,15 +69,7 @@ if [ "${ZNUMBERS}" = "ON" ]; then
     make z
 fi
 
-# fake sudo function to be used by docker build
-sudo () {
-  [[ $EUID = 0 ]] || set -- command sudo "$@"
-  "$@"
-}
-
 # copy include and lib files to the right places
-INCDIR=$PREFIX/include/mumps
-LIBDIR=$PREFIX/lib/mumps
 sudo mkdir -p $INCDIR/
 sudo mkdir -p $LIBDIR/
 sudo cp -av include/*.h $INCDIR/
@@ -77,5 +81,5 @@ fi
 sudo cp -av lib/libmumps_common*.* $LIBDIR/
 
 # update ldconfig
-echo "/usr/local/lib/mumps" | sudo tee /etc/ld.so.conf.d/mumps.conf
+echo "${LIBDIR}" | sudo tee /etc/ld.so.conf.d/mumps.conf >/dev/null
 sudo ldconfig
