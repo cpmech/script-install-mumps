@@ -10,8 +10,8 @@ sudo () {
 
 # arguments
 INTEL=${1:-"OFF"}
-OMP=${3:-"OFF"}
-SEQ=${2:-"OFF"}
+OMP=${2:-"OFF"}
+SEQ=${3:-"OFF"}
 SIMPLE=${4:-"OFF"}
 ZNUMBERS=${5:-"OFF"}
 
