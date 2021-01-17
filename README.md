@@ -23,7 +23,7 @@ Open the terminal in a temporary Docker container:
 ```bash
 docker run --rm -it mumps /bin/bash
 # or
-docker run --rm -it mumps:intel /bin/bash
+docker run --rm -it mumps_intel /bin/bash
 ```
 
 Alternatively, see [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). First, create a directory and copy the `.devcontainer` directory into it.
