@@ -1,4 +1,4 @@
-# Script to install the MUMPS Sparse Solver
+# Script to install METIS and MUMPS
 
 The script `install-mumps.bash` builds both static and **dynamic** libraries for the MUMPS sparse solver. The script offers an option to use the Intel compilers.
 
