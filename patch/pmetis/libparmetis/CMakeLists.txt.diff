@@ -1,0 +1,19 @@
+--- CMakeLists.txt.orig	2021-01-17 16:18:09.879898743 +1000
++++ CMakeLists.txt	2021-01-17 16:15:09.183398458 +1000
+@@ -3,12 +3,12 @@
+ # Find sources.
+ file(GLOB parmetis_sources *.c)
+ # Create libparmetis
+-add_library(parmetis ${ParMETIS_LIBRARY_TYPE} ${parmetis_sources})
++add_library(parmetis${PLAT} ${ParMETIS_LIBRARY_TYPE} ${parmetis_sources})
+ # Link with metis and MPI libraries.
+-target_link_libraries(parmetis metis ${MPI_LIBRARIES})
+-set_target_properties(parmetis PROPERTIES LINK_FLAGS "${MPI_LINK_FLAGS}")
++target_link_libraries(parmetis${PLAT} ${METIS_LIB} ${MPI_LIBRARIES})
++set_target_properties(parmetis${PLAT} PROPERTIES LINK_FLAGS "${MPI_LINK_FLAGS}")
+ 
+-install(TARGETS parmetis
++install(TARGETS parmetis${PLAT}
+   LIBRARY DESTINATION lib
+   RUNTIME DESTINATION lib
+   ARCHIVE DESTINATION lib)

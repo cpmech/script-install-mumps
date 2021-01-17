@@ -1,0 +1,19 @@
+--- CMakeLists.txt.orig	2021-01-17 16:15:57.916613353 +1000
++++ CMakeLists.txt	2021-01-17 16:14:34.334529073 +1000
+@@ -3,13 +3,13 @@
+ # Find sources.
+ file(GLOB metis_sources *.c)
+ # Build libmetis.
+-add_library(metis ${METIS_LIBRARY_TYPE} ${GKlib_sources} ${metis_sources})
++add_library(metis${PLAT} ${METIS_LIBRARY_TYPE} ${GKlib_sources} ${metis_sources})
+ if(UNIX)
+-  target_link_libraries(metis m)
++  target_link_libraries(metis${PLAT} m)
+ endif()
+ 
+ if(METIS_INSTALL)
+-  install(TARGETS metis
++  install(TARGETS metis${PLAT}
+     LIBRARY DESTINATION lib
+     RUNTIME DESTINATION lib
+     ARCHIVE DESTINATION lib)
