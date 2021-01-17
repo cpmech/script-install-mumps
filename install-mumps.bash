@@ -12,8 +12,7 @@ sudo () {
 INTEL=${1:-"OFF"}
 OMP=${2:-"OFF"}
 SEQ=${3:-"OFF"}
-SIMPLE=${4:-"OFF"}
-ZNUMBERS=${5:-"OFF"}
+ZNUMBERS=${4:-"OFF"}
 
 # options
 VERSION="5.3.5"
@@ -29,13 +28,9 @@ if [ "${INTEL}" = "ON" ]; then
 fi
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"
-    SIMPLE="false"
 fi
 if [ "${SEQ}" = "ON" ]; then
     SELECTION="${SELECTION}.seq"
-fi
-if [ "${SIMPLE}" = "ON" ]; then
-    SELECTION="${SELECTION}.simple"
 fi
 
 # download and extract the source code into /tmp dir
