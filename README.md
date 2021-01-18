@@ -57,15 +57,13 @@ You may use the `install-mumps.bash` script directly, observing the input argume
 
 ### Install dependencies
 
-Run:
-
 ```bash
 ./install-deps-open.bash
 # or
 ./install-deps-intel.bash
 ```
 
-### Compile and install MUMPS on Ubuntu
+### Compile and install MUMPS
 
 ```bash
 ./all-open.bash
@@ -92,9 +90,7 @@ For example, the following libraries are installed:
 └── libpord_open.so
 ```
 
-### Remove include and library files on Ubuntu:
-
-Use the following scripts:
+### Remove include and library files
 
 1. `uninstall-metis.bash`
 2. `uninstall-mumps.bash`
