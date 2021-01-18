@@ -3,8 +3,9 @@
 The script `install-mumps.bash` builds both static and **dynamic** libraries for the MUMPS sparse solver. We offer options to use the Intel compilers and to use OpenMP.
 
 We consider two sets of tools:
-`_open`: GCC GFortran + OpenBLAS + OpenMPI; and
-`_intel`: Intel Compilers + Intel MKL + Intel MPI
+
+1. `_open`: GCC GFortran + OpenBLAS + OpenMPI; and
+2. `_intel`: Intel Compilers + Intel MKL + Intel MPI
 
 The resulting libraries will have the suffix `_open` or `_intel` corresponding to the cases 1 or 2 above. If the option **OMP** (OpenMP) is selected, the libraries will have the suffix `_open_omp` and `_intel_omp`.
 
