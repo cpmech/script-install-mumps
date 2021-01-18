@@ -5,7 +5,7 @@ The script `install-mumps.bash` builds both static and **dynamic** libraries for
 We consider two sets of tools:
 
 1. `_open`: GCC GFortran + OpenBLAS + OpenMPI; and
-2. `_intel`: Intel Compilers + Intel MKL + Intel MPI
+2. `_intel`: Intel compilers + Intel MKL + Intel MPI
 
 The resulting libraries will have the suffix `_open` or `_intel` corresponding to the cases 1 or 2 above. If the option **OMP** (OpenMP) is selected, the libraries will have the suffix `_open_omp` and `_intel_omp`.
 
@@ -40,7 +40,7 @@ docker run --rm -it mumps_open /bin/bash
 docker run --rm -it mumps_intel /bin/bash
 ```
 
-Alternatively, see [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). First, create a directory and copy the `.devcontainer` directory into it.
+Alternatively, use [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview). First, create a directory and copy the `.devcontainer` directory into it.
 
 Then, open your project folder (e.g. this repo folder) in Visual Studio Code and click the green button at the window's left-bottom corner. Choose _Reopen in Container_.
 
