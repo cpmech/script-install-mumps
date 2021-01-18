@@ -1,6 +1,6 @@
---- Makefile.orig	2020-12-30 10:54:39.260335212 +1000
-+++ Makefile	2020-12-30 10:57:01.418789636 +1000
-@@ -55,29 +55,25 @@
+--- Makefile.orig	2021-01-19 09:25:28.432881229 +1000
++++ Makefile	2021-01-19 09:27:46.110051304 +1000
+@@ -55,29 +55,26 @@
  multi_example:	s d c z
  	(cd examples ; $(MAKE) multi)
  
@@ -11,6 +11,7 @@
 -
  libseqneeded:
  	(cd libseq; $(MAKE))
++	cp libseq/lib*.so $(libdir)
  
 -# Build the libpord.a library and copy it into $(topdir)/lib
 -$(libdir)/libpord$(PLAT)$(LIBEXT):

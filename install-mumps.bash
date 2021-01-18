@@ -10,8 +10,8 @@ sudo () {
 
 # arguments
 INTEL=${1:-"OFF"}
-OMP=${2:-"OFF"}
-SEQ=${3:-"OFF"}
+SEQ=${2:-"OFF"}
+OMP=${3:-"OFF"}
 ZNUMBERS=${4:-"OFF"}
 
 # options
@@ -26,11 +26,11 @@ SELECTION=".open"
 if [ "${INTEL}" = "ON" ]; then
     SELECTION=".intel"
 fi
-if [ "${OMP}" = "ON" ]; then
-    SELECTION="${SELECTION}.omp"
-fi
 if [ "${SEQ}" = "ON" ]; then
     SELECTION="${SELECTION}.seq"
+fi
+if [ "${OMP}" = "ON" ]; then
+    SELECTION="${SELECTION}.omp"
 fi
 
 # download and extract the source code into /tmp dir
