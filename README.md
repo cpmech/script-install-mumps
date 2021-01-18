@@ -19,18 +19,15 @@ You may build a Docker image or run the script directly in an Ubuntu/Linux syste
 
 The docker image is convenient with Visual Code remote development tools (but containerized; "not really remote").
 
-## Docker Image
+## Docker image
 
 We can build the Docker image by running:
 
 ```bash
 ./build-docker-image-open.bash
 # or
-source /opt/intel/oneapi/setvars.sh
 ./build-docker-image-intel.bash
 ```
-
-**NOTE:** If you compile the code using the Intel tools (after `source setvars.sh`) and decide to compile the `_open` version, you'll have to open another terminal (because of setvars.sh).
 
 Open the terminal in a temporary Docker container:
 
@@ -71,6 +68,8 @@ You may use the `install-mumps.bash` script directly, observing the input argume
 source /opt/intel/oneapi/setvars.sh
 ./all-intel.bash
 ```
+
+**NOTE:** If you compile the code using the Intel tools (after `source setvars.sh`) and decide to compile the `_open` version, you'll have to open another terminal (because of setvars.sh).
 
 For example, the following libraries are installed:
 
