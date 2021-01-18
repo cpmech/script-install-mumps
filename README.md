@@ -90,6 +90,53 @@ For example, the following libraries are installed:
 └── libpord_open.so
 ```
 
+Or:
+
+```
+/usr/local/lib/metis/
+|-- libmetis_intel.so
+`-- libparmetis_intel.so
+
+/usr/local/lib/mumps/
+|-- libdmumps_intel.a
+|-- libdmumps_intel.so
+|-- libdmumps_intel_omp.a
+|-- libdmumps_intel_omp.so
+|-- libmumps_common_intel.a
+|-- libmumps_common_intel.so
+|-- libmumps_common_intel_omp.a
+|-- libmumps_common_intel_omp.so
+|-- libpord_intel.a
+|-- libpord_intel.so
+|-- libpord_intel_omp.a
+`-- libpord_intel_omp.so
+```
+
+The include files tree is (if metis is compiled for Intel):
+
+```
+/usr/local/include/
+|-- metis
+|   |-- metis.h
+|   `-- parmetis.h
+`-- mumps
+    |-- cmumps_c.h
+    |-- cmumps_root.h
+    |-- cmumps_struc.h
+    |-- dmumps_c.h
+    |-- dmumps_root.h
+    |-- dmumps_struc.h
+    |-- mumps_c_types.h
+    |-- mumps_compat.h
+    |-- mumps_int_def.h
+    |-- smumps_c.h
+    |-- smumps_root.h
+    |-- smumps_struc.h
+    |-- zmumps_c.h
+    |-- zmumps_root.h
+    `-- zmumps_struc.h
+```
+
 ### Remove include and library files
 
 1. `uninstall-metis.bash`
