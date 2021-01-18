@@ -1,4 +1,4 @@
-PLAT   =
+PLAT   = _open
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
@@ -9,9 +9,9 @@ AR     = ar vr
 RANLIB = ranlib
 
 CDEFS = -DAdd_
-OPTF  = -O3 -DBLR_MT -fopenmp
-OPTL  = -O3 -fopenmp
-OPTC  = -O3 -fopenmp
+OPTF  = -O3
+OPTL  = -O3
+OPTC  = -O3
 
 LSCOTCHDIR = /usr/lib
 ISCOTCH    = -I/usr/include/scotch
@@ -40,8 +40,8 @@ LIBOTHERS = -lpthread
 
 INCPAR =
 LIBPAR = $(SCALAP) $(LAPACK)
-INCSEQ = -I$(topdir)/libseq
-LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+INCSEQ =
+LIBSEQ =
 
 INCS = $(INCPAR)
 LIBS = $(LIBPAR)

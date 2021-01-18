@@ -22,9 +22,9 @@ LIBDIR=$PREFIX/lib/mumps
 PDIR=`pwd`/patch
 
 # selection
-SELECTION=""
+SELECTION=".open"
 if [ "${INTEL}" = "ON" ]; then
-    SELECTION="${SELECTION}.intel"
+    SELECTION=".intel"
 fi
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"

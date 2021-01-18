@@ -23,7 +23,7 @@ LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
 
 LMETISDIR = /usr/local/lib/metis
 IMETIS    = -I/usr/local/include/metis
-LMETIS    = -L$(LMETISDIR) -lparmetis$(PLAT) -lmetis$(PLAT)
+LMETIS    = -L$(LMETISDIR) -lparmetis_intel -lmetis_intel
 
 ORDERINGSF = -Dpord -Dmetis -Dparmetis
 ORDERINGSC = $(ORDERINGSF)
@@ -40,8 +40,8 @@ LIBOTHERS = -lpthread
 
 INCPAR =
 LIBPAR = $(SCALAP) $(LAPACK)
-INCSEQ = -I$(topdir)/libseq
-LIBSEQ = $(LAPACK) -L$(topdir)/libseq -lmpiseq
+INCSEQ =
+LIBSEQ =
 
 INCS = $(INCPAR)
 LIBS = $(LIBPAR)

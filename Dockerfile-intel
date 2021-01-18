@@ -31,7 +31,7 @@ COPY . /tmp/app
 WORKDIR /tmp/app
 
 # install MUMPS
-RUN source /opt/intel/oneapi/setvars.sh && bash all.bash ON
+RUN bash all-intel.bash
 
 # configure image for remote development
 RUN bash common-debian.sh

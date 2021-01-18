@@ -25,7 +25,7 @@ COPY . /tmp/app
 WORKDIR /tmp/app
 
 # install MUMPS
-RUN bash install-mumps.bash
+RUN bash all-open.bash
 
 # configure image for remote development
 RUN bash common-debian.sh
