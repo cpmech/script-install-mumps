@@ -13,8 +13,8 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # copy files
-COPY . /tmp/app
-WORKDIR /tmp/app
+COPY . /tmp/script-install-mumps
+WORKDIR /tmp/script-install-mumps
 
 # install dependencies
 RUN bash install-deps.bash ${INTEL} ${MPI} \
