@@ -75,5 +75,5 @@ If you want to debug using the VS Code editor, copy the `.vscode` directory to y
 
 ## Remove include and library files
 
-1. `uninstall-metis.bash`
-2. `uninstall-mumps.bash`
+1. `uninstall-mumps.bash`
+2. `uninstall-parmetis.bash`
