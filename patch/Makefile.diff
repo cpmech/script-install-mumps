@@ -11,7 +11,7 @@
 -
  libseqneeded:
  	(cd libseq; $(MAKE))
-+	cp libseq/lib*.so $(libdir)
++	cp -a libseq/lib*.so $(libdir)/
  
 -# Build the libpord.a library and copy it into $(topdir)/lib
 -$(libdir)/libpord$(PLAT)$(LIBEXT):

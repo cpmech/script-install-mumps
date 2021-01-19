@@ -77,8 +77,11 @@ sudo mkdir -p $LIBDIR/
 sudo cp -av include/*.h $INCDIR/
 sudo cp -av lib/libpord*.* $LIBDIR/
 sudo cp -av lib/libdmumps*.* $LIBDIR/
+if [ "${MPI}" = "OFF" ]; then
+    sudo cp -av lib/libmpiseq*.* $LIBDIR/
+fi
 if [ "${ZNUMBERS}" = "ON" ]; then
-  sudo cp -av lib/libzmumps*.* $LIBDIR/
+    sudo cp -av lib/libzmumps*.* $LIBDIR/
 fi
 sudo cp -av lib/libmumps_common*.* $LIBDIR/
 
