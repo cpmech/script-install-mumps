@@ -53,7 +53,7 @@ We can build the Docker image by running:
 ./build-docker-image.bash [INTEL] [MPI]
 ```
 
-Both the `*_mpi` and `*_seq` Docker images will include the `*_omp` libraries.
+Both the `*_mpi` and `*_seq` Docker images will include the `*_omp` libraries. Also, the `*_mpi` Docker image will also contain the `*_seq` libraries.
 
 The Docker image will have a size of approximately 1GB; however, the `_intel` Docker image will be about 8GB!
 
