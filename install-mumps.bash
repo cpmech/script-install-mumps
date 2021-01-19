@@ -14,6 +14,11 @@ MPI=${2:-"OFF"}
 OMP=${3:-"OFF"}
 ZNUMBERS=${4:-"OFF"}
 
+# compile ParMetis
+if [ "${INTEL}" = "ON" ] && [ "${MPI}" = "ON" ]; then
+    bash ./install-parmetis ON
+fi
+
 # options
 VERSION="5.3.5"
 PREFIX="/usr/local"

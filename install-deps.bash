@@ -50,17 +50,17 @@ if [ "${INTEL}" = "ON" ]; then
 # install "Open" tools
 else
 
-    # install GNU compilers and OpenBLAS (and other libs)
+    # install GNU compilers and OpenBLAS
     sudo apt-get install -y --no-install-recommends \
         gfortran \
-        libopenblas-dev \
-        libscalapack-mpi-dev
+        libopenblas-dev
 
     # if MPI, install OpenMPI (and other libs)
     if [ "${MPI}" = "ON" ]; then
         sudo apt-get install -y --no-install-recommends \
             libopenmpi-dev \
             libparmetis-dev \
-            libptscotch-dev
+            libptscotch-dev \
+            libscalapack-mpi-dev
     fi
 fi

@@ -17,7 +17,7 @@ COPY . /tmp/app
 WORKDIR /tmp/app
 
 # install dependencies
-RUN bash install-deps.bash ${INTEL} ${MPI} && \
+RUN bash install-deps.bash ${INTEL} ${MPI} \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install libraries
