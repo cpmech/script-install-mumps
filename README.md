@@ -57,6 +57,16 @@ Both the `*_mpi` and `*_seq` Docker images will include the `*_omp` libraries.
 
 The Docker image will have a size of approximately 1GB; however, the `_intel` Docker image will be about 8GB!
 
+For instance (output of `docker image ls`):
+
+```
+REPOSITORY       TAG     IMAGE ID  CREATED         SIZE
+mumps_open_mpi   latest  ...       2 minutes ago   933MB
+mumps_open_seq   latest  ...       12 minutes ago  807MB
+mumps_intel_seq  latest  ...       22 minutes ago  7.36GB
+mumps_intel_mpi  latest  ...       40 minutes ago  8GB
+```
+
 To check the Docker image, open a terminal in a temporary Docker container:
 
 ```bash
