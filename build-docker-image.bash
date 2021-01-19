@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 # arguments
 INTEL=${1:-"OFF"}
 MPI=${2:-"OFF"}
