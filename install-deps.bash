@@ -19,14 +19,9 @@ sudo apt-get install -y --no-install-recommends \
     g++ \
     gdb \
     git \
+    libmetis-dev \
     make \
     patch
-
-# if not MPI, install sequential METIS for both Intel and "Open"
-if [ "${MPI}" = "OFF" ]; then
-    sudo apt-get install -y --no-install-recommends \
-        libmetis-dev
-fi
 
 # install Intel tools
 if [ "${INTEL}" = "ON" ]; then
