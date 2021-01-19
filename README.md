@@ -58,9 +58,9 @@ We can build the Docker image by running:
 To check the Docker image, open a terminal in a temporary Docker container:
 
 ```bash
-docker run --rm -it mumps_open /bin/bash
+docker run --rm -it mumps_open_seq /bin/bash
 # or
-docker run --rm -it mumps_intel /bin/bash
+docker run --rm -it mumps_intel_mpi /bin/bash
 ```
 
 To use [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview), copy the directory named `.devcontainer` to your project. Then, open your project folder in VS Code and click the green button at the window's left-bottom corner. Choose _Reopen in Container_. See image below:
