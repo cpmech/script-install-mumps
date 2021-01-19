@@ -1,4 +1,4 @@
-PLAT   = _intel_omp
+PLAT   = _intel_mpi
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
@@ -9,9 +9,9 @@ AR     = ar vr
 RANLIB = ranlib
 
 CDEFS = -DAdd_
-OPTF  = -O3 -nofor-main -DBLR_MT -qopenmp -DGEMMT_AVAILABLE
-OPTL  = -O3 -nofor-main -qopenmp
-OPTC  = -O3 -qopenmp
+OPTF  = -O3 -nofor-main -DGEMMT_AVAILABLE
+OPTL  = -O3 -nofor-main
+OPTC  = -O3
 
 LSCOTCHDIR =
 ISCOTCH    =

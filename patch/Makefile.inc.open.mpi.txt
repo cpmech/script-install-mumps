@@ -1,4 +1,4 @@
-PLAT   = _open_omp
+PLAT   = _open_mpi
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
@@ -9,9 +9,9 @@ AR     = ar vr
 RANLIB = ranlib
 
 CDEFS = -DAdd_
-OPTF  = -O3 -DBLR_MT -fopenmp
-OPTL  = -O3 -fopenmp
-OPTC  = -O3 -fopenmp
+OPTF  = -O3
+OPTL  = -O3
+OPTC  = -O3
 
 LSCOTCHDIR = /usr/lib
 ISCOTCH    = -I/usr/include/scotch

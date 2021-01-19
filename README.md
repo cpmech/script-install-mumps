@@ -96,19 +96,25 @@ Or:
 |-- libmetis_intel.so
 `-- libparmetis_intel.so
 
-/usr/local/lib/mumps/
-|-- libdmumps_intel.a
-|-- libdmumps_intel.so
-|-- libdmumps_intel_omp.a
-|-- libdmumps_intel_omp.so
-|-- libmumps_common_intel.a
-|-- libmumps_common_intel.so
-|-- libmumps_common_intel_omp.a
-|-- libmumps_common_intel_omp.so
-|-- libpord_intel.a
-|-- libpord_intel.so
-|-- libpord_intel_omp.a
-`-- libpord_intel_omp.so
+/usr/local/lib/mumps
+├── libdmumps_intel.a
+├── libdmumps_intel_seq.a
+├── libdmumps_intel_seq_omp.a
+├── libdmumps_intel_seq_omp.so
+├── libdmumps_intel_seq.so
+├── libdmumps_intel.so
+├── libmumps_common_intel.a
+├── libmumps_common_intel_seq.a
+├── libmumps_common_intel_seq_omp.a
+├── libmumps_common_intel_seq_omp.so
+├── libmumps_common_intel_seq.so
+├── libmumps_common_intel.so
+├── libpord_intel.a
+├── libpord_intel_seq.a
+├── libpord_intel_seq_omp.a
+├── libpord_intel_seq_omp.so
+├── libpord_intel_seq.so
+└── libpord_intel.so
 ```
 
 The include files tree is (if metis is compiled for Intel):

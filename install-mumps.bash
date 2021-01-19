@@ -10,7 +10,7 @@ sudo () {
 
 # arguments
 INTEL=${1:-"OFF"}
-SEQ=${2:-"OFF"}
+MPI=${2:-"OFF"}
 OMP=${3:-"OFF"}
 ZNUMBERS=${4:-"OFF"}
 
@@ -26,7 +26,9 @@ SELECTION=".open"
 if [ "${INTEL}" = "ON" ]; then
     SELECTION=".intel"
 fi
-if [ "${SEQ}" = "ON" ]; then
+if [ "${MPI}" = "ON" ]; then
+    SELECTION="${SELECTION}.mpi"
+else
     SELECTION="${SELECTION}.seq"
 fi
 if [ "${OMP}" = "ON" ]; then
