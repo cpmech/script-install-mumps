@@ -1,2 +1,3 @@
-c_example
+c_example_mpi
+c_example_seq
 gmon.out

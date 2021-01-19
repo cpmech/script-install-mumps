@@ -5,10 +5,30 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(gdb) Launch",
+      "name": "c_example_mpi",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/examples/c_example",
+      "program": "${workspaceFolder}/examples/c_example_mpi",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/examples",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build"
+    },
+    {
+      "name": "c_example_seq",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples/c_example_seq",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}/examples",

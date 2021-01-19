@@ -75,15 +75,7 @@ fi
 sudo mkdir -p $INCDIR/
 sudo mkdir -p $LIBDIR/
 sudo cp -av include/*.h $INCDIR/
-sudo cp -av lib/libpord*.* $LIBDIR/
-sudo cp -av lib/libdmumps*.* $LIBDIR/
-if [ "${MPI}" = "OFF" ]; then
-    sudo cp -av lib/libmpiseq*.* $LIBDIR/
-fi
-if [ "${ZNUMBERS}" = "ON" ]; then
-    sudo cp -av lib/libzmumps*.* $LIBDIR/
-fi
-sudo cp -av lib/libmumps_common*.* $LIBDIR/
+sudo cp -av lib/*.so $LIBDIR/
 
 # update ldconfig
 echo "${LIBDIR}" | sudo tee /etc/ld.so.conf.d/mumps.conf >/dev/null
