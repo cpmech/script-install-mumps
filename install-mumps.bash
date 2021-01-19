@@ -12,7 +12,7 @@ sudo () {
 INTEL=${1:-"OFF"}
 MPI=${2:-"OFF"}
 OMP=${3:-"OFF"}
-ZNUMBERS=${4:-"OFF"}
+ZNUMBERS=${4:-"ON"}
 
 # compile ParMetis
 if [ "${INTEL}" = "ON" ] && [ "${MPI}" = "ON" ]; then
