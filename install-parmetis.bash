@@ -20,7 +20,7 @@ LIBDIR=$PREFIX/lib/metis
 PDIR=`pwd`/patch/pmetis
 
 # compilers
-PLAT=""
+PLAT="_open"
 if [ "${INTEL}" = "ON" ]; then
     PLAT="_intel"
     CC="mpiicc"
