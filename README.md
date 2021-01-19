@@ -73,7 +73,92 @@ If you want to debug using the VS Code editor, copy the `.vscode` directory to y
 
 ## Installed files
 
-## Remove include and library files
+Considering all flag combinations (except ZNUMBERS), we get:
+
+```
+/usr/local/lib/mumps
+├── libdmumps_intel_mpi.a
+├── libdmumps_intel_mpi_omp.a
+├── libdmumps_intel_mpi_omp.so
+├── libdmumps_intel_mpi.so
+├── libdmumps_intel_seq.a
+├── libdmumps_intel_seq_omp.a
+├── libdmumps_intel_seq_omp.so
+├── libdmumps_intel_seq.so
+├── libdmumps_open_mpi.a
+├── libdmumps_open_mpi_omp.a
+├── libdmumps_open_mpi_omp.so
+├── libdmumps_open_mpi.so
+├── libdmumps_open_seq.a
+├── libdmumps_open_seq_omp.a
+├── libdmumps_open_seq_omp.so
+├── libdmumps_open_seq.so
+├── libmumps_common_intel_mpi.a
+├── libmumps_common_intel_mpi_omp.a
+├── libmumps_common_intel_mpi_omp.so
+├── libmumps_common_intel_mpi.so
+├── libmumps_common_intel_seq.a
+├── libmumps_common_intel_seq_omp.a
+├── libmumps_common_intel_seq_omp.so
+├── libmumps_common_intel_seq.so
+├── libmumps_common_open_mpi.a
+├── libmumps_common_open_mpi_omp.a
+├── libmumps_common_open_mpi_omp.so
+├── libmumps_common_open_mpi.so
+├── libmumps_common_open_seq.a
+├── libmumps_common_open_seq_omp.a
+├── libmumps_common_open_seq_omp.so
+├── libmumps_common_open_seq.so
+├── libpord_intel_mpi.a
+├── libpord_intel_mpi_omp.a
+├── libpord_intel_mpi_omp.so
+├── libpord_intel_mpi.so
+├── libpord_intel_seq.a
+├── libpord_intel_seq_omp.a
+├── libpord_intel_seq_omp.so
+├── libpord_intel_seq.so
+├── libpord_open_mpi.a
+├── libpord_open_mpi_omp.a
+├── libpord_open_mpi_omp.so
+├── libpord_open_mpi.so
+├── libpord_open_seq.a
+├── libpord_open_seq_omp.a
+├── libpord_open_seq_omp.so
+└── libpord_open_seq.so
+```
+
+The include files are:
+
+```
+/usr/local/include/mumps
+├── cmumps_c.h
+├── cmumps_root.h
+├── cmumps_struc.h
+├── dmumps_c.h
+├── dmumps_root.h
+├── dmumps_struc.h
+├── mumps_compat.h
+├── mumps_c_types.h
+├── mumps_int_def.h
+├── smumps_c.h
+├── smumps_root.h
+├── smumps_struc.h
+├── zmumps_c.h
+├── zmumps_root.h
+└── zmumps_struc.h
+```
+
+And, if Intel + MPI is selected, we get:
+
+```
+/usr/local/include/metis
+├── metis.h
+└── parmetis.h
+```
+
+## Uninstall
+
+To remove all include and library files, run:
 
 1. `uninstall-mumps.bash`
 2. `uninstall-parmetis.bash`
