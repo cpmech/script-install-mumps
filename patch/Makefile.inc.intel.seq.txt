@@ -1,0 +1,51 @@
+PLAT   = _intel_seq
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = icc
+FC     = ifort
+FL     = ifort
+AR     = ar vr 
+RANLIB = ranlib
+
+CDEFS = -DAdd_
+OPTF  = -O3 -nofor-main -DGEMMT_AVAILABLE
+OPTL  = -O3 -nofor-main
+OPTC  = -O3
+
+LSCOTCHDIR =
+ISCOTCH    =
+LSCOTCH    =
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/metis
+LMETIS    = -L$(LMETISDIR) -lmetis
+
+ORDERINGSF = -Dpord -Dmetis
+ORDERINGSC = $(ORDERINGSF)
+
+LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
+IORDERINGSF = $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
+
+MKLROOT   = /opt/intel/oneapi/mkl/latest/lib/intel64
+LIBBLAS   = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core 
+LAPACK    = -L$(MKLROOT) -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core
+SCALAP    =
+LIBOTHERS = -lpthread
+
+MPIFLIB = -L$(topdir)/libseq -lmpiseq$(PLAT)
+
+INCPAR =
+LIBPAR =
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(LAPACK) $(MPIFLIB)
+
+INCS = $(INCSEQ)
+LIBS = $(LIBSEQ)
+
+LIBSEQNEEDED = libseqneeded
