@@ -36,6 +36,7 @@ if [ "${INTEL}" = "ON" ]; then
     echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
 
     # install Intel compilers and MKL
+    sudo apt-get update -y && \
     sudo apt-get install -y --no-install-recommends \
         intel-oneapi-compiler-dpcpp-cpp-and-cpp-classic \
         intel-oneapi-compiler-fortran \
