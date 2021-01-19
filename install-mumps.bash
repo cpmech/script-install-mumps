@@ -16,7 +16,7 @@ ZNUMBERS=${4:-"OFF"}
 
 # compile ParMetis
 if [ "${INTEL}" = "ON" ] && [ "${MPI}" = "ON" ]; then
-    bash ./install-parmetis ON
+    bash ./install-parmetis.bash ON
 fi
 
 # options
