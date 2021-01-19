@@ -11,6 +11,8 @@ if [ "${INTEL}" = "ON" ]; then
 fi
 if [ "${MPI}" = "ON" ]; then
     NAME="${NAME}_mpi"
+else
+    NAME="${NAME}_seq"
 fi
 
 # build Docker image
