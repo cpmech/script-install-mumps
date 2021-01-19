@@ -1,6 +1,6 @@
 {
-  "name": "MUMPS solver (open)",
-  "image": "mumps_open",
+  "name": "MUMPS Open MPI",
+  "image": "mumps_open_mpi",
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash",
   },

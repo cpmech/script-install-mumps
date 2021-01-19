@@ -41,9 +41,9 @@ To install both non-OMP and OMP versions, use:
 ./all.bash [INTEL] [MPI]
 ```
 
-**NOTE:** For the Intel case with MPI, `install-mumps.bash` will call the `install-metis.bash` script to install ParMetis because we cannot use Debian's libparmetis-dev with Intel. Then, the {Par}Metis include files and libraries will be copied to `/usr/local/include/metis` and `/usr/local/lib/metis`, respectively.
+For the Intel case with MPI, `install-mumps.bash` will call the `install-metis.bash` script to install ParMetis because we cannot use Debian's libparmetis-dev with Intel. Then, the {Par}Metis include files and libraries will be copied to `/usr/local/include/metis` and `/usr/local/lib/metis`, respectively.
 
-**NOTE:** If you compile the code using the Intel tools (after `source setvars.sh`) and decide to compile the `_open` version, you'll have to open another terminal (because of setvars.sh).
+If you compile the code using the Intel tools (after `source setvars.sh`) and decide to compile the `_open` version, you'll have to open another terminal (because of setvars.sh).
 
 ## Docker
 
@@ -53,7 +53,9 @@ We can build the Docker image by running:
 ./build-docker-image.bash [INTEL] [MPI]
 ```
 
-**NOTE:** The Docker image will have a size of approximately 1GB; however, the `_intel` Docker image will be about 8GB!
+Both the `*_mpi` and `*_seq` Docker images will include the `*_omp` libraries.
+
+The Docker image will have a size of approximately 1GB; however, the `_intel` Docker image will be about 8GB!
 
 To check the Docker image, open a terminal in a temporary Docker container:
 

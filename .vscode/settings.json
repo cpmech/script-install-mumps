@@ -1,7 +1,4 @@
 {
-  "C_Cpp.default.includePath": [
-    "/usr/local/include/mumps"
-  ],
   "files.associations": {
     "*.C": "cpp",
     "optional": "cpp",
