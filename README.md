@@ -75,13 +75,13 @@ docker run --rm -it mumps_open_seq /bin/bash
 docker run --rm -it mumps_intel_mpi /bin/bash
 ```
 
-To use [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview), copy the directory named `.devcontainer` to your project. Then, open your project folder in VS Code and click the green button at the window's left-bottom corner. Choose _Reopen in Container_. See image below:
+To use [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview), copy the directory named `.devcontainer` to your project. Then, open your project folder in VS Code and click the green button at the window's left-bottom corner. Choose _Reopen in Container_.
 
-![](vscode-open-in-container.gif)
+If you want to debug using the VS Code editor, copy the `.vscode` directory to your project and modify as appropriate.
 
-If you want to debug using the VS Code editor, copy the `.vscode` directory to your project and modify as appropriate. See the example below of how convenient it is to use VS Code for debugging the code.
+The image below shows VS Code Remote Dev + Docker + Debugging:
 
-![](Script_Install_MUMPS_1.gif)
+![](Script-Install-Mumps-001.gif)
 
 ## Installed files
 
