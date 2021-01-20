@@ -9,7 +9,7 @@ We consider two sets of tools:
 
 We also present a Dockerfile to build a Docker image. Note that with a Docker image, you won't "mess up" with your system. And you may use the very nice [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) extension (here, "containerized dev" and not "remote dev" though). See the Docker section below.
 
-![Docker](docker.png) Docker images based on **ubuntu:20.04**:
+Docker images based on **ubuntu:20.04**:
 
 ```bash
 docker pull cpmech/mumps_open_seq
