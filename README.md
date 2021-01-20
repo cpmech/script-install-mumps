@@ -2,14 +2,22 @@
 
 The script `install-mumps.bash` builds both static and **dynamic** libraries for the MUMPS sparse solver. We offer options to use the Intel compilers and to use OpenMP. If needed, we also compile ParMetis with Intel MPI.
 
-We also present a Dockerfile to build a Docker image. Note that with a Docker image, you won't "mess up" with your system. And you may use the very nice [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) extension (here, "containerized dev" and not "remote dev" though). See the Docker section below.
-
-The script `install-mumps.bash` downloads MUMPS' source code from the Debian repository, compiles the code and installs the headers to `/usr/local/include/mumps` and the libraries to `/usr/local/lib/mumps`.
-
 We consider two sets of tools:
 
 1. `_open`: GCC GFortran + OpenBLAS + OpenMPI; and
 2. `_intel`: Intel compilers + Intel MKL + Intel MPI
+
+We also present a Dockerfile to build a Docker image. Note that with a Docker image, you won't "mess up" with your system. And you may use the very nice [Visual Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview) extension (here, "containerized dev" and not "remote dev" though). See the Docker section below.
+
+![Docker](docker.png) Docker images based on **ubuntu:20.04**:
+
+```bash
+docker pull cpmech/mumps_open_seq
+# or
+docker pull cpmech/mumps_open_mpi
+```
+
+The script `install-mumps.bash` downloads MUMPS' source code from the Debian repository, compiles the code and installs the headers to `/usr/local/include/mumps` and the libraries to `/usr/local/lib/mumps`.
 
 ## Usage (Debian/Linux)
 

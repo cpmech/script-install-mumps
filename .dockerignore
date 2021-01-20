@@ -1,0 +1,7 @@
+.git/
+.devcontainer/
+.vscode/
+examples/
+*.gif
+*.mp4
+*.md
