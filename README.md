@@ -85,7 +85,7 @@ If you want to debug using the VS Code editor, copy the `.vscode` directory to y
 
 ## Installed files
 
-Considering all flag combinations (except ZNUMBERS), we get:
+Considering all flag combinations, we get (from `tree /usr/local/lib/mumps`):
 
 ```
 /usr/local/lib/mumps
@@ -105,6 +105,10 @@ Considering all flag combinations (except ZNUMBERS), we get:
 ├── libdmumps_open_seq_omp.a
 ├── libdmumps_open_seq_omp.so
 ├── libdmumps_open_seq.so
+├── libmpiseq_intel_seq_omp.so
+├── libmpiseq_intel_seq.so
+├── libmpiseq_open_seq_omp.so
+├── libmpiseq_open_seq.so
 ├── libmumps_common_intel_mpi.a
 ├── libmumps_common_intel_mpi_omp.a
 ├── libmumps_common_intel_mpi_omp.so
@@ -136,7 +140,25 @@ Considering all flag combinations (except ZNUMBERS), we get:
 ├── libpord_open_seq.a
 ├── libpord_open_seq_omp.a
 ├── libpord_open_seq_omp.so
-└── libpord_open_seq.so
+├── libpord_open_seq.so
+├── libzmumps_intel_mpi.a
+├── libzmumps_intel_mpi_omp.a
+├── libzmumps_intel_mpi_omp.so
+├── libzmumps_intel_mpi.so
+├── libzmumps_intel_seq.a
+├── libzmumps_intel_seq_omp.a
+├── libzmumps_intel_seq_omp.so
+├── libzmumps_intel_seq.so
+├── libzmumps_open_mpi.a
+├── libzmumps_open_mpi_omp.a
+├── libzmumps_open_mpi_omp.so
+├── libzmumps_open_mpi.so
+├── libzmumps_open_seq.a
+├── libzmumps_open_seq_omp.a
+├── libzmumps_open_seq_omp.so
+└── libzmumps_open_seq.so
+
+0 directories, 68 files
 ```
 
 The include files are:
