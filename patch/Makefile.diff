@@ -1,45 +1,32 @@
---- Makefile.orig	2021-04-14 01:26:30.000000000 +1000
-+++ Makefile	2021-08-29 11:19:29.700489570 +1000
-@@ -42,29 +42,27 @@
+--- Makefile.orig	2021-08-29 12:00:39.067000000 +1000
++++ Makefile	2021-08-29 13:36:47.068374981 +1000
+@@ -42,21 +42,27 @@
  
  include Makefile.inc
  
--prerequisites: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT)$(LIBEXT)
-+prerequisites: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT).a $(libdir)/libpord$(PLAT).so
++FPIC =
++ifeq ($(LIBEXT), .so)
++	FPIC = -fPIC
++endif
++
+ prerequisites: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT)$(LIBEXT)
  
  # dummy MPI library (sequential version)
  
  libseqneeded:
  	(cd libseq; $(MAKE))
-+	cp -a libseq/lib*.* $(libdir)/
++	cp libseq/libmpiseq$(PLAT)$(LIBEXT) lib/
  
--# Build the libpord.a library and copy it into $(topdir)/lib
--$(libdir)/libpord$(PLAT)$(LIBEXT):
--	if [ "$(LPORDDIR)" != "" ] ; then \
--	  cd $(LPORDDIR); \
+ # Build the libpord.a library and copy it into $(topdir)/lib
+ $(libdir)/libpord$(PLAT)$(LIBEXT):
+ 	if [ "$(LPORDDIR)" != "" ] ; then \
+ 	  cd $(LPORDDIR); \
 -	  $(MAKE) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" LIBEXT=$(LIBEXT); \
--	fi;
--	if [ "$(LPORDDIR)" != "" ] ; then \
++	  $(MAKE) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" PLAT="$(PLAT)" LIBEXT=$(LIBEXT); \
+ 	fi;
+ 	if [ "$(LPORDDIR)" != "" ] ; then \
 -	  cp $(LPORDDIR)/libpord$(LIBEXT) $@; \
--	fi;
--
-+# Build the libpord*.* library and copy it into $(topdir)/lib
-+$(libdir)/libpord$(PLAT).a:
-+	make -C $(LPORDDIR) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" PLAT="$(PLAT)" libpord$(PLAT).a \
-+	&& cp -a $(LPORDDIR)/libpord$(PLAT).a $(libdir)/
-+
-+$(libdir)/libpord$(PLAT).so:
-+	make -C $(LPORDDIR) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" PLAT="$(PLAT)" libpord$(PLAT).so \
-+	&& cp -a $(LPORDDIR)/libpord$(PLAT).so $(libdir)/
-+ 
- clean:
- 	(cd src; $(MAKE) clean)
- 	(cd examples; $(MAKE) clean)
--	(cd $(libdir); $(RM) *$(PLAT)$(LIBEXT))
-+	(cd $(libdir); $(RM) *$(PLAT).a *$(PLAT).so)
- 	(cd libseq; $(MAKE) clean)
--	if [ "$(LPORDDIR)" != "" ] ; then \
--	  cd $(LPORDDIR); $(MAKE) realclean; \
--        fi;
-+	(cd $(LPORDDIR); $(MAKE) realclean)
++	  cp $(LPORDDIR)/libpord$(PLAT)$(LIBEXT) $@; \
+ 	fi;
  
+ clean:

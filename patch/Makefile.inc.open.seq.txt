@@ -7,19 +7,21 @@ FC     = gfortran
 FL     = gfortran
 AR     = ar vr 
 RANLIB = ranlib
+LIBEXT = .a
 
 CDEFS = -DAdd_
 OPTF  = -O3
 OPTL  = -O3
 OPTC  = -O3
 
-LSCOTCHDIR =
-ISCOTCH    =
-LSCOTCH    =
-
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
-LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
+LPORD    = $(LPORDDIR)libpord$(PLAT)$(LIBEXT)
+
+LSEQDIR = $(topdir)/libseq/
+ISEQ    = -I$(LSEQDIR)
+LSEQ    = $(LSEQDIR)libmpiseq$(PLAT)$(LIBEXT)
+MPIFLIB = $(LSEQ)
 
 LMETISDIR = /usr/lib 
 IMETIS    = -I/usr/include/metis
@@ -28,24 +30,14 @@ LMETIS    = -L$(LMETISDIR) -lmetis
 ORDERINGSF = -Dpord -Dmetis
 ORDERINGSC = $(ORDERINGSF)
 
-LORDERINGS  = $(LPORD) $(LMETIS) $(LSCOTCH)
-IORDERINGSF = $(ISCOTCH)
-IORDERINGSC = $(IPORD) $(IMETIS) $(ISCOTCH)
+IORDERINGSC = $(IPORD) $(IMETIS)
+LORDERINGS  = $(LPORD) $(LMETIS)
 
-MKLROOT   = 
 LIBBLAS   = -lblas
 LAPACK    = -llapack
-SCALAP    =
 LIBOTHERS = -lpthread
 
-MPIFLIB = -L$(topdir)/libseq -lmpiseq$(PLAT)
-
-INCPAR =
-LIBPAR =
-INCSEQ = -I$(topdir)/libseq
-LIBSEQ = $(LAPACK) $(MPIFLIB)
-
-INCS = $(INCSEQ)
-LIBS = $(LIBSEQ)
+INCS = $(ISEQ)
+LIBS = -llapack $(LSEQ)
 
 LIBSEQNEEDED = libseqneeded

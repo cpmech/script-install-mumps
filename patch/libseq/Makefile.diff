@@ -1,28 +1,29 @@
---- Makefile.orig	2021-01-19 09:13:04.834714276 +1000
-+++ Makefile	2021-01-19 09:24:15.843188087 +1000
-@@ -8,15 +8,19 @@
+--- Makefile.orig	2021-08-29 11:59:42.632000000 +1000
++++ Makefile	2021-08-29 13:02:48.881827871 +1000
+@@ -8,15 +8,23 @@
  
  include ../Makefile.inc
  
--libmpiseq: libmpiseq$(PLAT)$(LIBEXT)
-+libmpiseq: libmpiseq$(PLAT).a libmpiseq$(PLAT).so
++ifeq ($(LIBEXT), .so)
++	FPIC=-fPIC
++endif
++
+ libmpiseq: libmpiseq$(PLAT)$(LIBEXT)
  
--libmpiseq$(PLAT)$(LIBEXT): mpi.o mpic.o elapse.o
--	$(AR)$@ mpi.o mpic.o elapse.o
-+libmpiseq$(PLAT).a: mpi.o mpic.o elapse.o
-+	$(AR) $@ mpi.o mpic.o elapse.o
- 	$(RANLIB) $@
-+
-+libmpiseq$(PLAT).so: mpi.o mpic.o elapse.o
+ libmpiseq$(PLAT)$(LIBEXT): mpi.o mpic.o elapse.o
++ifeq ($(LIBEXT), .so)
 +	$(FC) $(OPTL) -shared $^ -Wl,-soname,libmpiseq$(PLAT).so -o libmpiseq$(PLAT).so -Wl,-z,defs
-+
++else
+ 	$(AR)$@ mpi.o mpic.o elapse.o
+ 	$(RANLIB) $@
++endif
  .f.o:
 -	$(FC) $(OPTF)              -c $*.f $(OUTF)$*.o
-+	$(FC) $(OPTF) -fPIC -c $*.f $(OUTF)$*.o
++	$(FC) $(OPTF)              $(FPIC) -c $*.f $(OUTF)$*.o
  .c.o:
 -	$(CC) $(OPTC) $(CDEFS) -I. -c $*.c $(OUTC)$*.o
-+	$(CC) $(OPTC) $(CDEFS) -I. -fPIC -c $*.c $(OUTC)$*.o
++	$(CC) $(OPTC) $(CDEFS) -I. $(FPIC) -c $*.c $(OUTC)$*.o
  
  clean:
 -	$(RM) *.o *$(LIBEXT)
-+	$(RM) *.o *.a *.so
++	$(RM) *.o libmpiseq$(PLAT)$(LIBEXT)
