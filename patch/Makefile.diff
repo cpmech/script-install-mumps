@@ -1,17 +1,17 @@
---- Makefile.orig	2021-01-19 09:25:28.432881229 +1000
-+++ Makefile	2021-01-19 09:27:46.110051304 +1000
-@@ -55,29 +55,26 @@
- multi_example:	s d c z
- 	(cd examples ; $(MAKE) multi)
+--- Makefile.orig	2021-04-14 01:26:30.000000000 +1000
++++ Makefile	2021-08-29 11:19:29.700489570 +1000
+@@ -42,29 +42,27 @@
  
--requiredobj: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT)$(LIBEXT)
-+requiredobj: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT).a $(libdir)/libpord$(PLAT).so
+ include Makefile.inc
+ 
+-prerequisites: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT)$(LIBEXT)
++prerequisites: Makefile.inc $(LIBSEQNEEDED) $(libdir)/libpord$(PLAT).a $(libdir)/libpord$(PLAT).so
  
  # dummy MPI library (sequential version)
--
+ 
  libseqneeded:
  	(cd libseq; $(MAKE))
-+	cp -a libseq/lib*.so $(libdir)/
++	cp -a libseq/lib*.* $(libdir)/
  
 -# Build the libpord.a library and copy it into $(topdir)/lib
 -$(libdir)/libpord$(PLAT)$(LIBEXT):
@@ -22,6 +22,7 @@
 -	if [ "$(LPORDDIR)" != "" ] ; then \
 -	  cp $(LPORDDIR)/libpord$(LIBEXT) $@; \
 -	fi;
+-
 +# Build the libpord*.* library and copy it into $(topdir)/lib
 +$(libdir)/libpord$(PLAT).a:
 +	make -C $(LPORDDIR) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" PLAT="$(PLAT)" libpord$(PLAT).a \
@@ -30,7 +31,7 @@
 +$(libdir)/libpord$(PLAT).so:
 +	make -C $(LPORDDIR) CC="$(CC)" CFLAGS="$(OPTC)" AR="$(AR)" RANLIB="$(RANLIB)" OUTC="$(OUTC)" PLAT="$(PLAT)" libpord$(PLAT).so \
 +	&& cp -a $(LPORDDIR)/libpord$(PLAT).so $(libdir)/
- 
++ 
  clean:
  	(cd src; $(MAKE) clean)
  	(cd examples; $(MAKE) clean)

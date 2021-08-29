@@ -1,9 +1,6 @@
 {
-  "name": "MUMPS Open MPI",
-  "image": "mumps_open_mpi",
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash",
-  },
+  "name": "MUMPS Open SEQ OMP",
+  "image": "mumps_open_seq_omp",
   "runArgs": [
     "--cap-add=SYS_PTRACE",
     "--security-opt",

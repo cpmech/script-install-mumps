@@ -1,19 +1,36 @@
---- Makefile.orig	2020-12-30 11:00:20.546096092 +1000
-+++ Makefile	2020-12-30 11:03:52.461496649 +1000
-@@ -23,8 +23,10 @@
+--- Makefile.orig	2021-08-29 10:58:47.920669904 +1000
++++ Makefile	2021-08-29 11:09:01.604369985 +1000
+@@ -14,19 +14,24 @@
+ all: $(incdir)/mumps_int_def.h libcommon s d c z
+ 
+ libcommon: $(incdir)/mumps_int_def.h
+-	$(MAKE) $(libdir)/libmumps_common$(PLAT)$(LIBEXT)
++	$(MAKE) $(libdir)/libmumps_common$(PLAT).a
++	$(MAKE) $(libdir)/libmumps_common$(PLAT).so
+ 
+ s: $(incdir)/mumps_int_def.h libcommon
+-	$(MAKE) ARITH=s $(libdir)/libsmumps$(PLAT)$(LIBEXT)
++	$(MAKE) ARITH=s $(libdir)/libsmumps$(PLAT).a
++	$(MAKE) ARITH=s $(libdir)/libsmumps$(PLAT).so
+ 
+ d: $(incdir)/mumps_int_def.h libcommon
+-	$(MAKE) ARITH=d $(libdir)/libdmumps$(PLAT)$(LIBEXT)
++	$(MAKE) ARITH=d $(libdir)/libdmumps$(PLAT).a
++	$(MAKE) ARITH=d $(libdir)/libdmumps$(PLAT).so
+ 
+ c: $(incdir)/mumps_int_def.h libcommon
+-	$(MAKE) ARITH=c $(libdir)/libcmumps$(PLAT)$(LIBEXT)
++	$(MAKE) ARITH=c $(libdir)/libcmumps$(PLAT).a
++	$(MAKE) ARITH=c $(libdir)/libcmumps$(PLAT).so
+ 
+ z: $(incdir)/mumps_int_def.h libcommon
+-	$(MAKE) ARITH=z $(libdir)/libzmumps$(PLAT)$(LIBEXT)
++	$(MAKE) ARITH=z $(libdir)/libzmumps$(PLAT).a
++	$(MAKE) ARITH=z $(libdir)/libzmumps$(PLAT).so
+ 
  include $(topdir)/Makefile.inc
  
- mumps_lib:    $(incdir)/mumps_int_def.h \
--              $(libdir)/libmumps_common$(PLAT)$(LIBEXT) \
--              $(libdir)/lib$(ARITH)mumps$(PLAT)$(LIBEXT)
-+              $(libdir)/libmumps_common$(PLAT).a \
-+              $(libdir)/libmumps_common$(PLAT).so \
-+              $(libdir)/lib$(ARITH)mumps$(PLAT).a \
-+              $(libdir)/lib$(ARITH)mumps$(PLAT).so
- 
- # Build $(incdir)/mumps_int_def.h, needed by mumps_c_types.h
- $(incdir)/mumps_int_def.h: build_mumps_int_def 
-@@ -188,14 +190,20 @@
+@@ -192,14 +197,20 @@
          $(ARITH)tools.o\
          $(ARITH)type3_root.o
  
@@ -38,7 +55,7 @@
  # Dependencies between modules:
  # i) arithmetic-dependent modules:
  $(ARITH)ana_aux.o:              $(ARITH)mumps_struc_def.o \
-@@ -405,13 +413,13 @@
+@@ -411,13 +422,13 @@
  
  .SUFFIXES: .c .F .o
  .F.o:
@@ -54,5 +71,5 @@
 +	      $(IORDERINGSC) $(ORDERINGSC) -fPIC -c mumps_c.c $(OUTC)$@
  
  clean:
--	$(RM) *.o *.mod $(incdir)/mumps_int_def.h
-+	$(RM) *.o *.mod *.a *.so $(incdir)/mumps_int_def.h
+-	$(RM) *.o *.mod $(incdir)/mumps_int_def.h build_mumps_int_def
++	$(RM) *.o *.mod *.a *.so $(incdir)/mumps_int_def.h build_mumps_int_def

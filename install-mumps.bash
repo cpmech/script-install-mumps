@@ -9,15 +9,8 @@ sudo () {
 }
 
 # arguments
-INTEL=${1:-"OFF"}
-MPI=${2:-"OFF"}
-OMP=${3:-"OFF"}
-ZNUMBERS=${4:-"ON"}
-
-# compile ParMetis
-if [ "${INTEL}" = "ON" ] && [ "${MPI}" = "ON" ]; then
-    bash ./install-parmetis.bash ON
-fi
+OMP=${1:-"OFF"}
+ZNUMBERS=${1:-"OFF"}
 
 # options
 VERSION="5.4.0"
@@ -27,15 +20,7 @@ LIBDIR=$PREFIX/lib/mumps
 PDIR=`pwd`/patch
 
 # selection
-SELECTION=".open"
-if [ "${INTEL}" = "ON" ]; then
-    SELECTION=".intel"
-fi
-if [ "${MPI}" = "ON" ]; then
-    SELECTION="${SELECTION}.mpi"
-else
-    SELECTION="${SELECTION}.seq"
-fi
+SELECTION=".open.seq"
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"
 fi
@@ -77,9 +62,7 @@ sudo mkdir -p $LIBDIR/
 sudo cp -av include/*.h $INCDIR/
 sudo cp -av lib/libpord*.* $LIBDIR/
 sudo cp -av lib/libdmumps*.* $LIBDIR/
-if [ "${MPI}" = "OFF" ]; then
-    sudo cp -av lib/libmpiseq*.* $LIBDIR/
-fi
+sudo cp -av lib/libmpiseq*.* $LIBDIR/
 if [ "${ZNUMBERS}" = "ON" ]; then
     sudo cp -av lib/libzmumps*.* $LIBDIR/
 fi

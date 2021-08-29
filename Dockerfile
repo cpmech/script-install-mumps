@@ -1,8 +1,5 @@
 FROM ubuntu:20.04
 
-ARG INTEL="OFF"
-ARG MPI="OFF"
-
 # essential tools
 ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-c"]
@@ -17,11 +14,11 @@ COPY . /tmp/script-install-mumps
 WORKDIR /tmp/script-install-mumps
 
 # install dependencies
-RUN bash install-deps.bash ${INTEL} ${MPI} \
+RUN bash install-deps.bash \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install libraries
-RUN bash all.bash ${INTEL} ${MPI}
+RUN bash all.bash
 
 # configure image for remote development
 RUN bash zscripts/common-debian.sh
