@@ -6,7 +6,7 @@ LIB_SEQ = -ldmumps_open_seq
 
 .PHONY: all clean
 
-all: c_example_mpi c_example_seq
+all: c_example_seq
 
 c_example_seq: c_example_seq.c
 	gcc $(FLAGS) -I$(INCDIR) -L$(LIBDIR) $@.c -o $@ $(LIB_SEQ)
