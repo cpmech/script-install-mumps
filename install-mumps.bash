@@ -20,7 +20,7 @@ if [ "${INTEL}" = "ON" ] && [ "${MPI}" = "ON" ]; then
 fi
 
 # options
-VERSION="5.3.5"
+VERSION="5.4.0"
 PREFIX="/usr/local"
 INCDIR=$PREFIX/include/mumps
 LIBDIR=$PREFIX/lib/mumps
