@@ -1,8 +1,0 @@
---- CMakeLists.txt.orig	2021-01-17 16:15:44.964290551 +1000
-+++ CMakeLists.txt	2021-01-17 16:10:28.808385468 +1000
-@@ -24,4 +24,4 @@
- # Recursively look for CMakeLists.txt in subdirs.
- add_subdirectory("include")
- add_subdirectory("libmetis")
--add_subdirectory("programs")
-+#add_subdirectory("programs")

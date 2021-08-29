@@ -1,30 +1,35 @@
---- Makefile.orig	2020-12-30 10:15:43.804113084 +1000
-+++ Makefile	2020-12-30 10:17:32.700760525 +1000
-@@ -9,7 +9,7 @@
+--- Makefile.orig	2021-08-29 13:08:23.862118940 +1000
++++ Makefile	2021-08-29 13:15:32.588736425 +1000
+@@ -7,6 +7,10 @@
+ # RANLIB must be passed to make.
+ #
  
++ifeq ($(LIBEXT), .so)
++	FPIC=-fPIC
++endif
++
  INCLUDES = -I../include
  
--COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS)
-+COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS) -fPIC
+ COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS)
+@@ -22,14 +26,18 @@
+ # OUTC = -o
  
- OBJS = graph.o gbipart.o gbisect.o ddcreate.o ddbisect.o nestdiss.o \
-        multisector.o gelim.o bucket.o tree.o \
-@@ -24,12 +24,15 @@
  .c.o:
- 	$(CC) $(COPTIONS) -c $*.c $(OUTC)$*.o
+-	$(CC) $(COPTIONS) -c $*.c $(OUTC)$*.o
++	$(CC) $(COPTIONS) $(FPIC) -c $*.c $(OUTC)$*.o
  
 -libpord$(LIBEXT):$(OBJS)
--	$(AR)$@ $(OBJS)
-+libpord$(PLAT).a: $(OBJS)
-+	$(AR) $@ $(OBJS)
- 	$(RANLIB) $@
- 
-+libpord$(PLAT).so: $(OBJS)
++libpord$(PLAT)$(LIBEXT):$(OBJS)
++ifeq ($(LIBEXT), .so)
 +	$(CC) -shared $(OBJS) -Wl,-soname,libpord$(PLAT).so -o libpord$(PLAT).so -Wl,-z,defs
-+
++else
+ 	$(AR)$@ $(OBJS)
+ 	$(RANLIB) $@
++endif
+ 
  clean:
  	rm -f *.o
  
  realclean:
 -	rm -f *.o libpord.a
-+	rm -f *.o *.a *.so
++	rm -f *.o libpord$(PLAT)$(LIBEXT)
