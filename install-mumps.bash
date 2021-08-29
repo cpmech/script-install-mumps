@@ -10,7 +10,8 @@ sudo () {
 
 # arguments
 OMP=${1:-"OFF"}
-ZNUMBERS=${1:-"OFF"}
+DYN=${2:-"OFF"}
+ZNUMBERS=${3:-"OFF"}
 
 # options
 VERSION="5.4.0"
@@ -23,6 +24,9 @@ PDIR=`pwd`/patch
 SELECTION=".open.seq"
 if [ "${OMP}" = "ON" ]; then
     SELECTION="${SELECTION}.omp"
+fi
+if [ "${DYN}" = "ON" ]; then
+    SELECTION="${SELECTION}.dyn"
 fi
 
 # download and extract the source code into /tmp dir

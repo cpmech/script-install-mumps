@@ -7,7 +7,7 @@ FC     = gfortran
 FL     = gfortran
 AR     = ar vr 
 RANLIB = ranlib
-LIBEXT = .a
+LIBEXT = .so
 
 CDEFS = -DAdd_
 OPTF  = -O3

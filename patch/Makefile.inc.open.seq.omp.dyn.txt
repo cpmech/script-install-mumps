@@ -1,4 +1,4 @@
-PLAT   = _open_seq
+PLAT   = _open_seq_omp
 OUTC   = -o 
 OUTF   = -o 
 RM     = /bin/rm -f
@@ -7,12 +7,12 @@ FC     = gfortran
 FL     = gfortran
 AR     = ar vr 
 RANLIB = ranlib
-LIBEXT = .a
+LIBEXT = .so
 
 CDEFS = -DAdd_
-OPTF  = -O3
-OPTL  = -O3
-OPTC  = -O3
+OPTF  = -O3 -DBLR_MT -fopenmp
+OPTL  = -O3 -fopenmp
+OPTC  = -O3 -fopenmp
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/

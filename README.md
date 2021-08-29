@@ -14,22 +14,34 @@ The script `install-mumps.bash` downloads MUMPS' source code from the **Debian r
 
 ## Usage (Debian/Linux)
 
-Execute:
+First, install all dependencies:
 
 ```bash
 ./install-deps.bash
-./install-mumps.bash [OMP] [ZNUMBERS]
 ```
 
-where (the default options are all "OFF"):
+Then, run:
 
-1. OMP -- "ON" or "OFF" => use OpenMP
-2. ZNUMBERS -- "ON" or "OFF" => compile also zmumps for complex numbers
+```bash
+./install-mumps.bash [OMP] [DYN] [ZNUMBERS]
+```
+
+where:
+
+1. OMP = ON or OFF to use OpenMP
+2. DYN = ON or OFF to compile shared library (.so)
+3. ZNUMBERS = ON or OFF to compile also zmumps for complex numbers
 
 All libraries can **co-exist** with each other and the **default Debian** libraries in your system. The following combinations are possible:
 
-1. `_open_seq` "sequential" version not using MPI
-2. `_open_seq_omp` "sequential" version with OpenMP enabled
+1. `*_open_seq{.a,.so}` sequential version not using MPI
+2. `*_open_seq_omp{.a,.so}` sequential version with OpenMP enabled
+
+You may also compile all combinations with
+
+```
+./all.bash
+```
 
 ## Docker
 
@@ -61,79 +73,32 @@ Considering all flag combinations, we get (from `tree /usr/local/lib/mumps`):
 
 ```
 /usr/local/lib/mumps
-├── libdmumps_intel_mpi.a
-├── libdmumps_intel_mpi_omp.a
-├── libdmumps_intel_mpi_omp.so
-├── libdmumps_intel_mpi.so
-├── libdmumps_intel_seq.a
-├── libdmumps_intel_seq_omp.a
-├── libdmumps_intel_seq_omp.so
-├── libdmumps_intel_seq.so
-├── libdmumps_open_mpi.a
-├── libdmumps_open_mpi_omp.a
-├── libdmumps_open_mpi_omp.so
-├── libdmumps_open_mpi.so
 ├── libdmumps_open_seq.a
 ├── libdmumps_open_seq_omp.a
 ├── libdmumps_open_seq_omp.so
 ├── libdmumps_open_seq.so
-├── libmpiseq_intel_seq_omp.so
-├── libmpiseq_intel_seq.so
+├── libmpiseq_open_seq.a
+├── libmpiseq_open_seq_omp.a
 ├── libmpiseq_open_seq_omp.so
 ├── libmpiseq_open_seq.so
-├── libmumps_common_intel_mpi.a
-├── libmumps_common_intel_mpi_omp.a
-├── libmumps_common_intel_mpi_omp.so
-├── libmumps_common_intel_mpi.so
-├── libmumps_common_intel_seq.a
-├── libmumps_common_intel_seq_omp.a
-├── libmumps_common_intel_seq_omp.so
-├── libmumps_common_intel_seq.so
-├── libmumps_common_open_mpi.a
-├── libmumps_common_open_mpi_omp.a
-├── libmumps_common_open_mpi_omp.so
-├── libmumps_common_open_mpi.so
 ├── libmumps_common_open_seq.a
 ├── libmumps_common_open_seq_omp.a
 ├── libmumps_common_open_seq_omp.so
 ├── libmumps_common_open_seq.so
-├── libpord_intel_mpi.a
-├── libpord_intel_mpi_omp.a
-├── libpord_intel_mpi_omp.so
-├── libpord_intel_mpi.so
-├── libpord_intel_seq.a
-├── libpord_intel_seq_omp.a
-├── libpord_intel_seq_omp.so
-├── libpord_intel_seq.so
-├── libpord_open_mpi.a
-├── libpord_open_mpi_omp.a
-├── libpord_open_mpi_omp.so
-├── libpord_open_mpi.so
 ├── libpord_open_seq.a
 ├── libpord_open_seq_omp.a
 ├── libpord_open_seq_omp.so
 ├── libpord_open_seq.so
-├── libzmumps_intel_mpi.a
-├── libzmumps_intel_mpi_omp.a
-├── libzmumps_intel_mpi_omp.so
-├── libzmumps_intel_mpi.so
-├── libzmumps_intel_seq.a
-├── libzmumps_intel_seq_omp.a
-├── libzmumps_intel_seq_omp.so
-├── libzmumps_intel_seq.so
-├── libzmumps_open_mpi.a
-├── libzmumps_open_mpi_omp.a
-├── libzmumps_open_mpi_omp.so
-├── libzmumps_open_mpi.so
 ├── libzmumps_open_seq.a
 ├── libzmumps_open_seq_omp.a
 ├── libzmumps_open_seq_omp.so
 └── libzmumps_open_seq.so
 
-0 directories, 68 files
+0 directories, 20 files
+
 ```
 
-The include files are:
+The include files are (from `tree /usr/local/include/mumps`):
 
 ```
 /usr/local/include/mumps
@@ -152,19 +117,14 @@ The include files are:
 ├── zmumps_c.h
 ├── zmumps_root.h
 └── zmumps_struc.h
-```
 
-And, if Intel + MPI is selected, we get:
-
-```
-/usr/local/include/metis
-├── metis.h
-└── parmetis.h
+0 directories, 15 files
 ```
 
 ## Uninstall
 
 To remove all include and library files, run:
 
-1. `uninstall-mumps.bash`
-2. `uninstall-parmetis.bash`
+```bash
+./uninstall-mumps.bash
+```
