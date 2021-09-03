@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # image name
-NAME="mumps_open"
+NAME="cpmech/mumps_open"
 
 # build Docker image
 docker build --no-cache -t $NAME .
