@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # image name
-NAME="cpmech/mumps_open"
+NAME="cpmech/mumps-solver"
 VERSION="latest"
 
 # publish

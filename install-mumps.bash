@@ -29,18 +29,14 @@ if [ "${DYN}" = "ON" ]; then
     SELECTION="${SELECTION}.dyn"
 fi
 
-# download and extract the source code into /tmp dir
-MUMPS_GZ=mumps_$VERSION.orig.tar.gz
+# extract the source code into /tmp dir
+MUMPS_GZ=MUMPS_$VERSION.tar.gz
 MUMPS_DIR=MUMPS_$VERSION
+cp source/$MUMPS_GZ /tmp/
 cd /tmp
 if [ -d "$MUMPS_DIR" ]; then
     echo "... removing previous $MUMPS_DIR directory"
     rm -rf $MUMPS_DIR
-fi
-if [ -f "$MUMPS_GZ" ]; then
-    echo "... using existing $MUMPS_GZ file"
-else
-    curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o $MUMPS_GZ
 fi
 tar xzf $MUMPS_GZ
 cd $MUMPS_DIR
