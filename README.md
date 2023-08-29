@@ -2,6 +2,8 @@
 
 **Warning:** This repository uses an outdated version of MUMPS (**5.4.0**) which is no longer in the Debian repository.
 
+**Note:** This script does not generate the MPI version anymore.
+
 The script `install-mumps.bash` builds both static and dynamic libraries for the MUMPS sparse solver, with OpenMP and without it.
 
 Alternatively, Docker images can be used. The images are based on **ubuntu:20.04**:
