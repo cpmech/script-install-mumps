@@ -2,7 +2,7 @@ FLAGS  = -g -Wall
 PREFIX = /usr/local
 INCDIR = $(PREFIX)/include/mumps
 LIBDIR = $(PREFIX)/lib/mumps
-LIB_SEQ = -ldmumps_open_seq
+LIB_SEQ = -ldmumps_cpmech
 
 .PHONY: all clean
 
