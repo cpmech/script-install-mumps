@@ -1,0 +1,43 @@
+PLAT   = _open_seq
+OUTC   = -o 
+OUTF   = -o 
+RM     = /bin/rm -f
+CC     = gcc
+FC     = gfortran
+FL     = gfortran
+AR     = ar vr 
+RANLIB = ranlib
+LIBEXT = .a
+
+CDEFS = -DAdd_
+OPTF  = -O3 #-fallow-argument-mismatch
+OPTL  = -O3
+OPTC  = -O3
+
+LPORDDIR = $(topdir)/PORD/lib/
+IPORD    = -I$(topdir)/PORD/include/
+LPORD    = $(LPORDDIR)libpord$(PLAT)$(LIBEXT)
+
+LSEQDIR = $(topdir)/libseq/
+ISEQ    = -I$(LSEQDIR)
+LSEQ    = $(LSEQDIR)libmpiseq$(PLAT)$(LIBEXT)
+MPIFLIB = $(LSEQ)
+
+LMETISDIR = /usr/lib 
+IMETIS    = -I/usr/include/metis
+LMETIS    = -L$(LMETISDIR) -lmetis
+
+ORDERINGSF = -Dpord -Dmetis
+ORDERINGSC = $(ORDERINGSF)
+
+IORDERINGSC = $(IPORD) $(IMETIS)
+LORDERINGS  = $(LPORD) $(LMETIS)
+
+LIBBLAS   = -lblas
+LAPACK    = -llapack
+LIBOTHERS = -lpthread
+
+INCS = $(ISEQ)
+LIBS = $(LAPACK) $(LSEQ)
+
+LIBSEQNEEDED = libseqneeded
