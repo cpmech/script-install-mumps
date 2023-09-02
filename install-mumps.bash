@@ -19,6 +19,7 @@ PREFIX="/usr/local"
 INCDIR=$PREFIX/include/mumps
 LIBDIR=$PREFIX/lib/mumps
 PDIR=`pwd`/patch
+SOURCE_DIR=`pwd`/source
 
 # selection
 SELECTION=".open.seq"
@@ -40,7 +41,7 @@ fi
 if [ -f "$MUMPS_GZ" ]; then
     echo "... using existing $MUMPS_GZ file"
 else
-    curl http://deb.debian.org/debian/pool/main/m/mumps/$MUMPS_GZ -o $MUMPS_GZ
+    cp $SOURCE_DIR/$MUMPS_GZ $MUMPS_GZ
 fi
 tar xzf $MUMPS_GZ
 cd $MUMPS_DIR

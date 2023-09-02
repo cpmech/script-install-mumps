@@ -10,7 +10,7 @@ RANLIB = ranlib
 LIBEXT = .a
 
 CDEFS = -DAdd_
-OPTF  = -O3
+OPTF  = -O3 -fallow-argument-mismatch
 OPTL  = -O3
 OPTC  = -O3
 
