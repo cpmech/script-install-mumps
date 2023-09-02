@@ -8,6 +8,9 @@
 # packages installation: 
 # apt-get install gcc gfortran libmetis-dev libopenblas-dev
 
+# must be at the top
+PLAT = _cpmech
+
 # Begin orderings
 LSCOTCHDIR = 
 ISCOTCH   = 
@@ -16,7 +19,7 @@ LSCOTCH   =
 
 LPORDDIR = $(topdir)/PORD/lib/
 IPORD    = -I$(topdir)/PORD/include/
-LPORD    = -L$(LPORDDIR) -lpord
+LPORD    = -L$(LPORDDIR) -lpord$(PLAT)
 
 LMETISDIR = /usr/lib 
 IMETIS    = -I/usr/include/metis
@@ -33,7 +36,6 @@ IORDERINGSC = $(IMETIS) $(IPORD) $(ISCOTCH)
 # End orderings
 ################################################################################
 
-PLAT    = _cpmech
 LIBEXT_SHARED  = .so
 SONAME = -soname
 FPIC_OPT = -fPIC
