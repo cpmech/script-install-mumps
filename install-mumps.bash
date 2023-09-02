@@ -37,10 +37,8 @@ cd $MUMPS_DIR
 patch -u Makefile $PDIR/Makefile.diff
 cp $PDIR/Makefile.inc Makefile.inc
 
-# create output directoryes and copy include files
-sudo mkdir -p $INCDIR/
+# create output lib dir
 sudo mkdir -p $LIBDIR/
-sudo cp -av include/*.h $INCDIR/
 
 # compile double (static)
 make d
@@ -60,6 +58,10 @@ sudo cp -av lib/lib*.a $LIBDIR/
 make clean # << important
 make zshared
 sudo cp -av lib/lib*.so $LIBDIR/
+
+# copy include files
+sudo mkdir -p $INCDIR/
+sudo cp -av include/*.h $INCDIR/
 
 # update ldconfig
 echo "${LIBDIR}" | sudo tee /etc/ld.so.conf.d/mumps.conf >/dev/null
