@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # essential tools
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,7 +18,7 @@ RUN bash install-deps.bash \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install libraries
-RUN bash all.bash
+RUN bash install-mumps.bash
 
 # configure image for remote development
 RUN bash zscripts/common-debian.sh
