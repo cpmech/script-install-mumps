@@ -8,6 +8,12 @@ sudo () {
   "$@"
 }
 
+# select correct inc files
+INC_DOCKER=""
+if [[ $EUID = 0 ]]; then
+    INC_DOCKER="docker"
+fi
+
 # arguments
 OMP=${1:-"OFF"}
 DYN=${2:-"OFF"}
@@ -51,7 +57,7 @@ patch -u libseq/Makefile $PDIR/libseq/Makefile.diff
 patch -u PORD/lib/Makefile $PDIR/PORD/lib/Makefile.diff
 patch -u src/Makefile $PDIR/src/Makefile.diff
 patch -u Makefile $PDIR/Makefile.diff
-cp $PDIR/Makefile.inc$SELECTION.txt Makefile.inc
+cp $PDIR/$INC_DOCKER/Makefile.inc$SELECTION.txt Makefile.inc
 
 # compile double
 make d
