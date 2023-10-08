@@ -22,5 +22,8 @@
     "ratio": "cpp",
     "sstream": "cpp",
     "streambuf": "cpp"
-  }
+  },
+  "cSpell.words": [
+    "ifort"
+  ]
 }

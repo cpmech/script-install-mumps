@@ -18,10 +18,22 @@ First, install all dependencies:
 ./install-deps.bash
 ```
 
-Then, run:
+and (if you want to use Intel MKL and Fortran compiler)
+
+```bash
+./install-intel-mkl-and-ifort-linux
+```
+
+Then, run (for OpenBLAS):
 
 ```bash
 ./install-mumps.bash
+```
+
+Or, run (with Intel MKL):
+
+```bash
+./install-mumps.bash mkl
 ```
 
 All libraries can **co-exist** with each other and the **default Debian** libraries in your system. The following combinations are possible:
