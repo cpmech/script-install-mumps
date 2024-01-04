@@ -21,7 +21,7 @@ First, install all dependencies:
 and (if you want to use Intel MKL and Fortran compiler)
 
 ```bash
-./install-intel-mkl-and-ifort-linux
+./install-intel-mkl-and-ifort-debian
 ```
 
 Then, run (for OpenBLAS):
