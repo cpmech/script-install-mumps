@@ -8,15 +8,18 @@ sudo () {
   "$@"
 }
 
-# install packages
+# install dependencies
 sudo apt-get update -y && \
 sudo apt-get install -y --no-install-recommends \
     cmake \
+    curl \
     g++ \
     gdb \
     gfortran \
     git \
     libmetis-dev \
     libopenblas-dev \
+    libopenmpi-dev \
+    libscalapack-mpi-dev \
     make \
     patch
